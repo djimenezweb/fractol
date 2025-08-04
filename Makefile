@@ -7,7 +7,7 @@ OBJS		= $(SRC:.c=.o)
 all :	$(NAME)
 
 $(NAME) : $(OBJS)
-	$(CC) $(OBJS) -o $(NAME)
+	$(CC) $(OBJS) ./include/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm -o $(NAME)
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -16,7 +16,7 @@ clean :
 	rm -f $(OBJS)
 
 fclean : clean
-	rm -f $(NAME) $(NAME_BONUS)
+	rm -f $(NAME)
 
 re : fclean all
 
