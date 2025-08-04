@@ -4,7 +4,11 @@ CFLAGS		= -Wall -Werror -Wextra
 SRC			= fractol.c
 OBJS		= $(SRC:.c=.o)
 
-all :	$(NAME)
+all : $(MINILIBX) $(NAME)
+
+$(MINILIBX) :
+	if [ ! -d "minilibx-linux"]; then git clone https://github.com/42paris/minilibx-linux.git; fi
+	$(MAKE) -C minilibx
 
 $(NAME) : $(OBJS)
 	$(CC) $(OBJS) -Lminilibx-linux -l:libmlx_Linux.a -L/usr/lib -Iminilibx-linux -lXext -lX11 -lm -lz -o $(NAME)
