@@ -1,0 +1,7 @@
+*.out
+*.a
+*.o
+*.txt
+.vscode
+fractol
+minilibx
