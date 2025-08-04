@@ -6,12 +6,10 @@
 /*   By: danielji <danielji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 09:35:33 by danielji          #+#    #+#             */
-/*   Updated: 2025/08/04 12:31:21 by danielji         ###   ########.fr       */
+/*   Updated: 2025/08/04 13:01:07 by danielji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-/* Codam
-#include "MLX42/MLX42.h"  */
 #include "minilibx-linux/mlx.h"
 
 int	main(void)
