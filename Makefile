@@ -7,10 +7,10 @@ OBJS		= $(SRC:.c=.o)
 all :	$(NAME)
 
 $(NAME) : $(OBJS)
-	$(CC) $(OBJS) -o $(NAME)
+	$(CC) $(OBJS) -Lminilibx-linux -l:libmlx_Linux.a -L/usr/lib -Iminilibx-linux -lXext -lX11 -lm -lz -o $(NAME)
 
 %.o : %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 clean :
 	rm -f $(OBJS)
