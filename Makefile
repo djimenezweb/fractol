@@ -7,7 +7,7 @@ OBJS		= $(SRC:.c=.o)
 all :	$(NAME)
 
 $(NAME) : $(OBJS)
-	$(CC) $(OBJS) ./include/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm -o $(NAME)
+	$(CC) $(OBJS) -o $(NAME)
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@
