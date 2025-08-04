@@ -8,7 +8,8 @@ OBJS		= $(SRC:.c=.o)
 MLX_PATH	= minilibx-linux
 MLX_NAME	= libmlx.a
 MLX			= $(MLX_PATH)/$(MLX_NAME)
-MLX_LINK	= -lXext -lX11 -lm -lz
+MLX_LINK	= -lXext -lX11
+#MLX_LINK	= -lXext -lX11 -lm -lz
 
 # Libft
 LIBFT_PATH	= libft
@@ -55,4 +56,7 @@ re : fclean all
 run : all
 	./$(NAME)
 
-.PHONY : all clean fclean re run
+check : all
+	valgrind ./$(NAME)
+
+.PHONY : all clean fclean re run check
