@@ -4,24 +4,55 @@ CFLAGS		= -Wall -Werror -Wextra
 SRC			= fractol.c
 OBJS		= $(SRC:.c=.o)
 
-all : $(MINILIBX) $(NAME)
+# Minilibx
+MLX_PATH	= minilibx-linux
+MLX_NAME	= libmlx.a
+MLX			= $(MLX_PATH)/$(MLX_NAME)
+MLX_LINK	= -lXext -lX11 -lm -lz
 
-$(MINILIBX) :
-	if [ ! -d "minilibx-linux"]; then git clone https://github.com/42paris/minilibx-linux.git; fi
-	$(MAKE) -C minilibx
+# Libft
+LIBFT_PATH	= libft
+LIBFT_NAME	= libft.a
+LIBFT		= $(LIBFT_PATH)/$(LIBFT_NAME)
+
+INC			= -I./$(MLX_PATH)/ -I./$(LIBFT_PATH)/
+
+all : $(MLX) $(LIBFT) $(NAME)
+
+$(MLX) :
+	@echo "=== Making MiniLibX ==="
+	@$(MAKE) -sC $(MLX_PATH)
+
+$(LIBFT) :
+	@echo "=== Making Libft ==="
+	@$(MAKE) -sC $(LIBFT_PATH)
 
 $(NAME) : $(OBJS)
-	$(CC) $(OBJS) -Lminilibx-linux -l:libmlx_Linux.a -L/usr/lib -Iminilibx-linux -lXext -lX11 -lm -lz -o $(NAME)
+	@echo "=== Compiling ==="
+	@$(CC) $(CFLAGS) $(OBJS) $(MLX) $(LIBFT) $(INC) $(MLX_LINK) -o $(NAME)
 
 %.o : %.c
-	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
+	@echo "=== Creating object files ==="
+	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
 
 clean :
-	rm -f $(OBJS)
+	@echo "=== Removing .o files ==="
+	@rm -f $(OBJS)
+	@echo "=== Removing Minilibx .o files ==="
+	@$(MAKE) clean -sC $(MLX_PATH)
+	@echo "=== Removing Libft .o files ==="
+	@$(MAKE) clean -sC $(LIBFT_PATH)
 
 fclean : clean
-	rm -f $(NAME)
+	@echo "=== Removing fractol executable ==="
+	@rm -f $(NAME)
+	@echo "=== Removing Libft ==="
+	@rm -f $(LIBFT)
 
 re : fclean all
+	@echo "=== Rebuilding ==="
 
-.PHONY : all bonus clean fclean re
+run : all
+	./$(NAME)
+
+.PHONY : all clean fclean re run
