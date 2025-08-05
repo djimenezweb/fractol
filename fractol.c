@@ -6,23 +6,11 @@
 /*   By: danielji <danielji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 09:35:33 by danielji          #+#    #+#             */
-/*   Updated: 2025/08/04 21:04:24 by danielji         ###   ########.fr       */
+/*   Updated: 2025/08/05 09:53:09 by danielji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "minilibx-linux/mlx.h"
-#include <stdlib.h>
-#include <X11/keysym.h>
-#include "libft/libft.h"
-
-#define WIDTH	1920
-#define HEIGHT	1080
-
-typedef struct s_mlx_data
-{
-	void	*mlx;
-	void	*mlx_win;
-}	t_mlx_data;
+#include "fractol.h"
 
 int	handle_input(int keysym, t_mlx_data *data)
 {
