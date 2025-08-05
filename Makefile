@@ -10,13 +10,13 @@ MLX_NAME	= libmlx.a
 MLX			= $(MLX_PATH)/$(MLX_NAME)
 MLX_LINK	= -lXext -lX11
 #MLX_LINK	= -lXext -lX11 -lm -lz
+MLX_COMP	= $(MLX) -I./$(MLX_PATH) $(MLX_LINK)
 
 # Libft
 LIBFT_PATH	= libft
 LIBFT_NAME	= libft.a
 LIBFT		= $(LIBFT_PATH)/$(LIBFT_NAME)
-
-INC			= -I./$(MLX_PATH)/ -I./$(LIBFT_PATH)/
+LIBFT_COMP	= $(LIBFT) -I./$(LIBFT_PATH)/
 
 all : $(MLX) $(LIBFT) $(NAME)
 
@@ -30,7 +30,7 @@ $(LIBFT) :
 
 $(NAME) : $(OBJS)
 	@echo "=== Compiling ==="
-	@$(CC) $(CFLAGS) $(OBJS) $(MLX) $(LIBFT) $(INC) $(MLX_LINK) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_COMP) $(MLX_COMP) -o $(NAME)
 
 %.o : %.c
 	@echo "=== Creating object files ==="
