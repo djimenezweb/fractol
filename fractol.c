@@ -6,13 +6,13 @@
 /*   By: danielji <danielji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 09:35:33 by danielji          #+#    #+#             */
-/*   Updated: 2025/08/05 09:53:09 by danielji         ###   ########.fr       */
+/*   Updated: 2025/08/05 11:32:26 by danielji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "fractol.h"
 
-int	handle_input(int keysym, t_mlx_data *data)
+/* int	handle_input(int keysym, t_mlx_data *data)
 {
 	if (keysym == XK_Escape)
 	{
@@ -23,31 +23,45 @@ int	handle_input(int keysym, t_mlx_data *data)
 	}
 	ft_printf("Pressed key %d\n", keysym);
 	return (0);
+} */
+
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
 }
 
 int	main(void)
 {
-	t_mlx_data	data;
+	int		i;
+	void	*mlx;
+	void	*mlx_win;	
+	t_data	img;
 	
-	data.mlx = mlx_init();
-	if (!data.mlx)
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, WIDTH, HEIGHT, "HD test");
+	img.img = mlx_new_image(mlx, WIDTH, HEIGHT);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+	my_mlx_pixel_put(&img, 5, 5, 0xff0000);
+	i = 0;
+	while (i <= WIDTH)
 	{
-		// handle error
-		return (1);
+		my_mlx_pixel_put(&img, i, i, 0x00ff00);
+		i++;
 	}
-	data.mlx_win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "HD test");
-	if (!data.mlx_win)
-	{
-		// handle error, free stuff
-		return (1);
-	}
-	mlx_key_hook(data.mlx_win, handle_input, &data);
+	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+	//mlx_pixel_put(mlx, mlx_win, 960 + i, 540 + i, 0x00ff00);
+	//mlx_key_hook(mlx_win, handle_input, &data);
 	// mlx_loop_hook(...); No events listening
-	//mlx_hook(data.mlx_win, ButtonPress, ButtonPressMask, &button_press, &data);
-	mlx_pixel_put(data.mlx, data.mlx_win, 960, 540, 0x00ff00);
-	mlx_loop(data.mlx);
-	mlx_destroy_window(data.mlx, data.mlx_win);
-	mlx_destroy_display(data.mlx);
-	free(data.mlx);
+	//mlx_hook(mlx_win, ButtonPress, ButtonPressMask, &button_press, &data);
+/* 	i = -1;
+	while (++i <= WIDTH)
+		mlx_pixel_put(mlx, mlx_win, 960 + i, 540 + i, 0x00ff00); */
+	mlx_loop(mlx);
+	//mlx_destroy_window(mlx, mlx_win);
+	//mlx_destroy_display(mlx);
+	//free(mlx);
 	return (0);
 }
