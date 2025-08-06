@@ -8,7 +8,7 @@ OBJS		= $(SRC:.c=.o)
 MLX_PATH	= minilibx-linux
 MLX_NAME	= libmlx.a
 MLX			= $(MLX_PATH)/$(MLX_NAME)
-MLX_LINK	= -lXext -lX11
+MLX_LINK	= -lXext -lX11 -lm
 #MLX_LINK	= -lXext -lX11 -lm -lz
 MLX_COMP	= $(MLX) -I./$(MLX_PATH) $(MLX_LINK)
 

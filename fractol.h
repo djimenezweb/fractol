@@ -6,7 +6,7 @@
 /*   By: danielji <danielji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 09:51:40 by danielji          #+#    #+#             */
-/*   Updated: 2025/08/05 11:34:39 by danielji         ###   ########.fr       */
+/*   Updated: 2025/08/06 13:51:27 by danielji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -15,6 +15,7 @@
 
 # include "minilibx-linux/mlx.h"
 # include <stdlib.h>
+# include <math.h>
 # include <X11/keysym.h>
 # include "libft/libft.h"
 

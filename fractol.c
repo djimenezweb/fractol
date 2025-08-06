@@ -6,7 +6,7 @@
 /*   By: danielji <danielji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 09:35:33 by danielji          #+#    #+#             */
-/*   Updated: 2025/08/06 12:13:20 by danielji         ###   ########.fr       */
+/*   Updated: 2025/08/06 13:55:03 by danielji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -70,20 +70,75 @@ void	print_frame(t_data *img)
 
 void	print_rectangle(t_data *img, int x_start, int y_start, int w, int h)
 {
+	int	color = 0xffffff;
 	int	x = x_start;
-	while (x_start <= w)
+	int y = y_start;
+	while (x_start <= (w + x))
 	{
-		my_mlx_pixel_put(img, x_start, y_start, 0x00a6f4);
-		my_mlx_pixel_put(img, x_start, h, 0x00a6f4);
+		my_mlx_pixel_put(img, x_start, y_start, color);
+		my_mlx_pixel_put(img, x_start, y_start + h, color);
 		x_start++;
 	}
 	x_start = x;
-	while (y_start <= h)
+	while (y_start <= (h + y))
 	{
-		my_mlx_pixel_put(img, x_start, y_start, 0x00a6f4);
-		my_mlx_pixel_put(img, w, y_start, 0x00a6f4);
+		my_mlx_pixel_put(img, x_start, y_start, color);
+		my_mlx_pixel_put(img, x_start + w, y_start, color);
 		y_start++;
 	}
+}
+
+void	print_fill_rectangle(t_data *img, int x_start, int y_start, int w, int h)
+{
+	int	x;
+	int	y;
+	int	fill;
+
+	x = 0;
+	fill = 0x9810fa;
+	while (x <= WIDTH)
+	{
+		if (x >= x_start && x <= (w + x_start))
+		{
+			y = 0;
+			while (y <= HEIGHT)
+			{
+				if (y >= y_start && y <= (h + y_start))
+					my_mlx_pixel_put(img, x, y, fill);
+				y++;
+			}
+		}
+		x++;
+	}
+}
+
+void	print_circle(t_data *img, double x0, double y0, double r)
+{
+	double	x;
+	double	y;
+	int		fill;
+
+	x = 0;
+	fill = 0x009966;
+	while (x <= WIDTH)
+	{
+		if ((x >= (x0 - r)) && (x <= (x0 + r)))
+		{
+			y = 0;
+			while (y <= HEIGHT)
+			{
+				if ((y >= (y0 - r)) && (y <= (y0 + r)))
+				{
+					// Si (x,y) está a la distancia r de (x0,y0)
+					if (sqrt((x - x0) * (x - x0) + (y - y0) * (y - y0)) <= r)
+						my_mlx_pixel_put(img, (int)x, (int)y, fill);
+				}
+				y++;
+			}
+		}
+		x++;
+	}
+
 }
 
 int	main(void)
@@ -99,7 +154,9 @@ int	main(void)
 	print_sq_diagonal(&img);
 	print_diagonal(&img);
 	print_frame(&img);
-	print_rectangle(&img, 192, 66, 1357, 687);
+	print_fill_rectangle(&img, 110, 220, 310, 410);
+	print_rectangle(&img, 100, 200, 300, 400);
+	print_circle(&img, (double)960, (double)540, (double)100);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
 	return (0);
