@@ -6,7 +6,7 @@
 /*   By: danielji <danielji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 09:35:33 by danielji          #+#    #+#             */
-/*   Updated: 2025/08/06 13:55:03 by danielji         ###   ########.fr       */
+/*   Updated: 2025/08/07 11:14:37 by danielji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -88,6 +88,27 @@ void	print_rectangle(t_data *img, int x_start, int y_start, int w, int h)
 	}
 }
 
+void	print_crosshair(t_data *img)
+{
+	int	x;
+	int	y;
+	int	color;
+
+	x = (WIDTH / 2) - 12;
+	y = (HEIGHT / 2) - 12;
+	color = 0xffff00;
+	while(x < (WIDTH / 2) + 12)
+	{
+		my_mlx_pixel_put(img, x, (HEIGHT / 2), color);
+		x++;
+	}
+	while(y < (HEIGHT / 2) + 12)
+	{
+		my_mlx_pixel_put(img, (WIDTH / 2), y, color);
+		y++;
+	}
+}
+
 void	print_fill_rectangle(t_data *img, int x_start, int y_start, int w, int h)
 {
 	int	x;
@@ -138,8 +159,34 @@ void	print_circle(t_data *img, double x0, double y0, double r)
 		}
 		x++;
 	}
-
 }
+
+/* void	print_mandelbrot(t_data *img, double z, double c)
+{
+	double	x;
+	double	y;
+	int		fill;
+
+	x = 0;
+	fill = 0x009966;
+	while (x <= WIDTH)
+	{
+		if (x >= 0)
+		{
+			y = 0;
+			while (y <= HEIGHT)
+			{
+				if (y >= 0)
+				{
+					if (x && y)
+						my_mlx_pixel_put(img, (int)x, (int)y, fill);
+				}
+				y++;
+			}
+		}
+		x++;
+	}
+} */
 
 int	main(void)
 {
@@ -157,7 +204,9 @@ int	main(void)
 	print_fill_rectangle(&img, 110, 220, 310, 410);
 	print_rectangle(&img, 100, 200, 300, 400);
 	print_circle(&img, (double)960, (double)540, (double)100);
+	print_crosshair(&img);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
+	// Free stuff
 	return (0);
 }

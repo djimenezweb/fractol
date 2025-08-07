@@ -6,7 +6,7 @@
 /*   By: danielji <danielji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 09:51:40 by danielji          #+#    #+#             */
-/*   Updated: 2025/08/06 13:51:27 by danielji         ###   ########.fr       */
+/*   Updated: 2025/08/07 13:13:00 by danielji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -21,6 +21,8 @@
 
 # define WIDTH	1920
 # define HEIGHT	1080
+# define ITERATIONS	15
+# define BACKGROUND	0x009966
 
 typedef struct s_mlx_data
 {
