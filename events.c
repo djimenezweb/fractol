@@ -1,12 +1,12 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: danielji <danielji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 09:35:33 by danielji          #+#    #+#             */
-/*   Updated: 2025/08/05 11:32:26 by danielji         ###   ########.fr       */
+/*   Updated: 2025/08/08 09:21:29 by danielji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -25,15 +25,7 @@
 	return (0);
 } */
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
-
-int	main(void)
+/* int	main(void)
 {
 	int		i;
 	void	*mlx;
@@ -56,12 +48,12 @@ int	main(void)
 	//mlx_key_hook(mlx_win, handle_input, &data);
 	// mlx_loop_hook(...); No events listening
 	//mlx_hook(mlx_win, ButtonPress, ButtonPressMask, &button_press, &data);
-/* 	i = -1;
+	i = -1;
 	while (++i <= WIDTH)
-		mlx_pixel_put(mlx, mlx_win, 960 + i, 540 + i, 0x00ff00); */
+		mlx_pixel_put(mlx, mlx_win, 960 + i, 540 + i, 0x00ff00);
 	mlx_loop(mlx);
 	//mlx_destroy_window(mlx, mlx_win);
 	//mlx_destroy_display(mlx);
 	//free(mlx);
 	return (0);
-}
+} */
