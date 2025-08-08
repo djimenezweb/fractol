@@ -1,7 +1,7 @@
 NAME		= fractol
 CC			= cc
 CFLAGS		= -Wall -Werror -Wextra
-SRC			= fractol.c
+SRC			= events.c fractol.c mandelbrot.c print-utils.c
 OBJS		= $(SRC:.c=.o)
 
 # Minilibx
