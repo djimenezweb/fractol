@@ -6,7 +6,7 @@
 /*   By: danielji <danielji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 09:51:40 by danielji          #+#    #+#             */
-/*   Updated: 2025/08/08 09:41:17 by danielji         ###   ########.fr       */
+/*   Updated: 2025/08/08 11:09:59 by danielji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -21,7 +21,7 @@
 
 # define WIDTH	1920
 # define HEIGHT	1080
-# define ITERATIONS	10
+# define ITERATIONS	30
 # define BACKGROUND	0x009966
 
 /* A structure to represent complex numbers:
@@ -50,8 +50,8 @@ typedef struct s_data
 
 double	ft_abs(double n);
 t_complex	quadratic_map(t_complex z, t_complex c);
-int		is_mandelbrot_set(double r, double i);
-void	print_mandelbrot(t_data *img);
+int		is_in_mandelbrot(double r, double i);
+void	print_mandelbrot(t_data *img, int scale);
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 

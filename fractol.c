@@ -6,7 +6,7 @@
 /*   By: danielji <danielji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 09:35:33 by danielji          #+#    #+#             */
-/*   Updated: 2025/08/08 09:32:10 by danielji         ###   ########.fr       */
+/*   Updated: 2025/08/08 11:14:45 by danielji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -36,7 +36,7 @@ int	main(void)
 	//print_fill_rectangle(&img, 110, 220, 310, 410);
 	//print_rectangle(&img, 100, 200, 300, 400);
 	//print_circle(&img, (double)960, (double)540, (double)100);
-	print_mandelbrot(&img);
+	print_mandelbrot(&img, 400);
 	print_crosshair(&img);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
