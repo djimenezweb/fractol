@@ -54,6 +54,7 @@ re : fclean all
 	@echo "=== Rebuilding ==="
 
 run : all
+	@$(MAKE) clean
 	./$(NAME)
 
 check : all
