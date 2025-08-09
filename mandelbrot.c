@@ -6,7 +6,7 @@
 /*   By: danielji <danielji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:23:39 by danielji          #+#    #+#             */
-/*   Updated: 2025/08/08 11:09:44 by danielji         ###   ########.fr       */
+/*   Updated: 2025/08/09 10:15:44 by danielji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -33,7 +33,6 @@ t_complex	quadratic_map(t_complex z, t_complex c)
 
 /* Checks whether a complex number `c` belongs to the
 Mandelbrot set after a certain amount of iterations */
-/* TO DO: Should return a value */
 int	is_in_mandelbrot(double r, double i)
 {
 	int			iter;
@@ -60,7 +59,7 @@ int	is_in_mandelbrot(double r, double i)
 	return (iter);
 }
 
-void	print_mandelbrot(t_data *img, int scale)
+void	print_mandelbrot(t_image *img, int scale)
 {
 	double	x;
 	double	y;
@@ -68,8 +67,8 @@ void	print_mandelbrot(t_data *img, int scale)
 	int		offset_y;
 	int		color;
 
-	offset_x = WIDTH / 2;
-	offset_y = HEIGHT / 2;
+	offset_x = WIDTH * 0.5;
+	offset_y = HEIGHT * 0.5;
 	x = -offset_x;
 	color = 0x9810fa;
 	while (x <= offset_x)
@@ -78,7 +77,7 @@ void	print_mandelbrot(t_data *img, int scale)
 		while (y <= offset_y)
 		{
 			if (is_in_mandelbrot(x / scale, y / scale) == 0)
-				my_mlx_pixel_put(img, (int)x + offset_x, (int)y + offset_y, color);
+				image_pixel_put(img, (int)x + offset_x, (int)y + offset_y, color);
 			y++;
 		}
 		x++;
