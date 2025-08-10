@@ -6,7 +6,7 @@
 /*   By: danielji <danielji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 09:35:33 by danielji          #+#    #+#             */
-/*   Updated: 2025/08/09 10:23:09 by danielji         ###   ########.fr       */
+/*   Updated: 2025/08/10 23:15:57 by danielji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -50,7 +50,13 @@ int	main(void)
 		free_and_exit(&mlx, 1);
 	img.img = mlx_new_image(mlx.mlx_ptr, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-	print_mandelbrot(&img, 400);
+	img.ratio = WIDTH / HEIGHT;
+	img.x_max = 2.1;
+	img.x_min = -img.x_max;
+	img.y_max = img.x_max * HEIGHT / WIDTH;
+	img.y_min = img.x_min * HEIGHT / WIDTH;
+	img.scale = ((img.x_max - img.x_min) / WIDTH);
+	print_mandelbrot(&img);
 	print_crosshair(&img);
 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, img.img, 0, 0);
 	mlx_key_hook(mlx.win_ptr, handle_input, &mlx.mlx_ptr);

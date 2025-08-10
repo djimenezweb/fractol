@@ -6,7 +6,7 @@
 /*   By: danielji <danielji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:23:39 by danielji          #+#    #+#             */
-/*   Updated: 2025/08/09 10:15:44 by danielji         ###   ########.fr       */
+/*   Updated: 2025/08/10 23:17:05 by danielji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -59,25 +59,26 @@ int	is_in_mandelbrot(double r, double i)
 	return (iter);
 }
 
-void	print_mandelbrot(t_image *img, int scale)
+void	print_mandelbrot(t_image *img)
 {
-	double	x;
-	double	y;
-	int		offset_x;
-	int		offset_y;
-	int		color;
-
-	offset_x = WIDTH * 0.5;
-	offset_y = HEIGHT * 0.5;
-	x = -offset_x;
+	int	x = 0;
+	int y;
+	int	color;
 	color = 0x9810fa;
-	while (x <= offset_x)
+	while (x < WIDTH)
 	{
-		y = -offset_y;
-		while (y <= offset_y)
+		y = 0;
+		while (y < HEIGHT)
 		{
-			if (is_in_mandelbrot(x / scale, y / scale) == 0)
-				image_pixel_put(img, (int)x + offset_x, (int)y + offset_y, color);
+			double px = (x * img->scale) - img->x_max;
+			double py = (y * img->scale) - img->y_max;
+/* 			if (x == 960 && y == 540)
+			{
+				printf("x_max = %f; y_max = %f\n", img->x_max, img->y_max);
+				printf("px = %f; py = %f\n", px, py);
+			} */
+			if (is_in_mandelbrot(px, py) == 0)
+				image_pixel_put(img, x, y, color);
 			y++;
 		}
 		x++;
