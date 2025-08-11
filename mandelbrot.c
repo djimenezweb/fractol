@@ -6,7 +6,7 @@
 /*   By: danielji <danielji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:23:39 by danielji          #+#    #+#             */
-/*   Updated: 2025/08/10 23:17:05 by danielji         ###   ########.fr       */
+/*   Updated: 2025/08/11 11:40:14 by danielji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -51,7 +51,7 @@ int	is_in_mandelbrot(double r, double i)
 		{
 			//printf("%f,%f escapes at %d\n", c.r, c.i, iter);
 			//break ;
-			return (0);
+			return (iter);
 		}
 		//printf("%d: (%fr, %fi)\n", iter, z.r, z.i);
 		iter++;
@@ -61,24 +61,25 @@ int	is_in_mandelbrot(double r, double i)
 
 void	print_mandelbrot(t_image *img)
 {
-	int	x = 0;
-	int y;
-	int	color;
-	color = 0x9810fa;
+	int		x;
+	int		y;
+	double	px;
+	double	py;
+	uint32_t	color;
+	int		iter;
+
+	x = 0;
+	color = 0xffffff;
 	while (x < WIDTH)
 	{
 		y = 0;
 		while (y < HEIGHT)
 		{
-			double px = (x * img->scale) - img->x_max;
-			double py = (y * img->scale) - img->y_max;
-/* 			if (x == 960 && y == 540)
-			{
-				printf("x_max = %f; y_max = %f\n", img->x_max, img->y_max);
-				printf("px = %f; py = %f\n", px, py);
-			} */
-			if (is_in_mandelbrot(px, py) == 0)
-				image_pixel_put(img, x, y, color);
+			px = img->x_min + (double)x * (img->x_max - img->x_min) / WIDTH;
+			py = img->y_max + (double)y * (img->y_min - img->y_max) / HEIGHT;
+			iter = is_in_mandelbrot(px, py);
+			color = ((uint8_t)(255 * (double)(1.0 - (double)iter / ITERATIONS)) * 0x010101);
+			image_pixel_put(img, x, y, color);
 			y++;
 		}
 		x++;
