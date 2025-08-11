@@ -6,7 +6,7 @@
 /*   By: danielji <danielji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 09:35:33 by danielji          #+#    #+#             */
-/*   Updated: 2025/08/11 11:42:04 by danielji         ###   ########.fr       */
+/*   Updated: 2025/08/11 18:25:17 by danielji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -37,11 +37,21 @@ void	image_pixel_put(t_image *image, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-int	main(void)
+void	bad_arguments()
+{
+	ft_printf("To do: Bad arguments\n");
+	exit(EXIT_FAILURE);
+}
+
+int	main(int argc, char *argv[])
 {
 	t_mlx	mlx;
 	t_image	img;
-	
+
+	if (argc < 2 || argc > 4)
+		bad_arguments();
+	if (argv[1][0] != 'M' && argv[1][0] != 'J')
+		bad_arguments();
 	mlx.mlx_ptr = mlx_init();
 	if (!mlx.mlx_ptr)
 		free_and_exit(&mlx, 1);
@@ -51,7 +61,7 @@ int	main(void)
 	img.img = mlx_new_image(mlx.mlx_ptr, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	img.ratio = WIDTH / HEIGHT;
-	img.x_max = 2.1;
+	img.x_max = 1.2;
 	img.x_min = -img.x_max;
 	img.y_max = img.x_max * HEIGHT / WIDTH;
 	img.y_min = img.x_min * HEIGHT / WIDTH;

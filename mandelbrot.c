@@ -6,7 +6,7 @@
 /*   By: danielji <danielji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 11:23:39 by danielji          #+#    #+#             */
-/*   Updated: 2025/08/11 11:40:14 by danielji         ###   ########.fr       */
+/*   Updated: 2025/08/11 18:27:02 by danielji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -78,7 +78,10 @@ void	print_mandelbrot(t_image *img)
 			px = img->x_min + (double)x * (img->x_max - img->x_min) / WIDTH;
 			py = img->y_max + (double)y * (img->y_min - img->y_max) / HEIGHT;
 			iter = is_in_mandelbrot(px, py);
-			color = ((uint8_t)(255 * (double)(1.0 - (double)iter / ITERATIONS)) * 0x010101);
+			if (iter == 0 || iter == ITERATIONS)
+				color = 0x000000;
+			else
+				color = ((uint8_t)(255 * (double)((double)iter / ITERATIONS)) * 0x010101);
 			image_pixel_put(img, x, y, color);
 			y++;
 		}

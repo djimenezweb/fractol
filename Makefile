@@ -55,9 +55,9 @@ re : fclean all
 
 run : all
 	@$(MAKE) clean
-	./$(NAME)
+	./$(NAME) M
 
 check : all
-	valgrind ./$(NAME)
+	valgrind ./$(NAME) M
 
 .PHONY : all clean fclean re run check

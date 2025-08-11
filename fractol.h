@@ -6,7 +6,7 @@
 /*   By: danielji <danielji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 09:51:40 by danielji          #+#    #+#             */
-/*   Updated: 2025/08/10 23:17:35 by danielji         ###   ########.fr       */
+/*   Updated: 2025/08/11 18:19:28 by danielji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -19,9 +19,9 @@
 # include <math.h>
 # include <X11/keysym.h>
 
-# define WIDTH	1920
-# define HEIGHT	1080
-# define ITERATIONS	60
+# define WIDTH	1200
+# define HEIGHT	1200
+# define ITERATIONS	80
 # define BACKGROUND	0x009966
 
 /* A structure to represent complex numbers:
