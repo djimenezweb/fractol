@@ -12,7 +12,7 @@
 
 #include "fractol.h"
 
-int	julia(t_complex z, t_complex c)
+int	fractal_iterations(t_complex z, t_complex c)
 {
 	int	i;
 
@@ -29,44 +29,29 @@ int	julia(t_complex z, t_complex c)
 
 /* Checks whether a complex number `c` belongs to the
 Mandelbrot set after a certain amount of iterations */
-int	mandelbrot(t_complex c)
-{
-	int			i;
-	t_complex	z;
-
-	i = 0;
-	z = init_complex(0.0, 0.0);
-	while (i < ITERATIONS)
-	{
-		z = quadratic_map(z, c);
-		if ((z.r * z.r) + (z.i * z.i) > 4)
-			return (i);
-		i++;
-	}
-	return (i);
-}
-
 int	cnt_iterations(t_fractol *f, t_complex pixel)
 {
-	int	i;
+	t_complex	z;
 
 	if (f->mode == 1)
-		i = mandelbrot(pixel);
+	{
+		z = init_complex(0.0, 0.0);
+		return (fractal_iterations(z, pixel));
+	}
 	if (f->mode == 2)
-		i = julia(pixel, f->c);
-	return (i);
+		return (fractal_iterations(pixel, f->c));
+	return (0);
 }
 
 void	render_fractal(t_fractol *f)
 {
+	int			i;
 	int			x;
 	int			y;
 	t_complex	pixel;
 	uint32_t	color;
-	int			iter;
 
 	x = 0;
-	color = 0xffffff;
 	while (x < WIDTH)
 	{
 		y = 0;
@@ -74,12 +59,9 @@ void	render_fractal(t_fractol *f)
 		{
 			pixel.r = f->x_min + x * f->scale_x;
 			pixel.i = f->y_max + y * f->scale_y;
-			iter = cnt_iterations(f, pixel);
-			if (iter == 0 || iter == ITERATIONS)
-				color = 0x000000;
-			else
-				color = ((uint8_t)(255 * (double)((double)iter / ITERATIONS)) * 0x010101);
-			image_pixel_put(f, x, y, color);
+			i = cnt_iterations(f, pixel);
+			color = set_color(i);
+			image_pixel_put(f, x, y, (int)color);
 			y++;
 		}
 		x++;
