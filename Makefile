@@ -2,7 +2,7 @@ NAME		= fractol
 CC			= cc
 CFLAGS		= -Wall -Werror -Wextra
 SRC_PATH	= src/
-SRC			= events.c fractol.c mandelbrot.c print-utils.c
+SRC			= events.c fractol.c initialization.c mandelbrot.c math-utils.c print-utils.c
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))
 OBJS		= $(SRCS:.c=.o)
 INC			= -I./includes/

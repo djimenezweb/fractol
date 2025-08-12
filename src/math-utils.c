@@ -1,34 +1,31 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print-utils.c                                      :+:      :+:    :+:   */
+/*   math-utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: danielji <danielji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/08 09:19:40 by danielji          #+#    #+#             */
-/*   Updated: 2025/08/09 10:10:45 by danielji         ###   ########.fr       */
+/*   Created: 2025/08/12 12:50:10 by danielji          #+#    #+#             */
+/*   Updated: 2025/08/12 12:51:30 by danielji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "fractol.h"
 
-void	print_crosshair(t_config *config)
+/* Returns the absolute value of a double floating number `n` */
+double	ft_abs(double n)
 {
-	int	x;
-	int	y;
-	int	color;
+	if (n < 0)
+		return (-n);
+	return (n);
+}
 
-	x = (WIDTH / 2) - 12;
-	y = (HEIGHT / 2) - 12;
-	color = 0xffff00;
-	while(x < (WIDTH / 2) + 12)
-	{
-		image_pixel_put(config, x, (HEIGHT / 2), color);
-		x++;
-	}
-	while(y < (HEIGHT / 2) + 12)
-	{
-		image_pixel_put(config, (WIDTH / 2), y, color);
-		y++;
-	}
+/* Solves `f(z) = z² + c` and returns the result as a complex number */
+t_complex	quadratic_map(t_complex z, t_complex c)
+{
+	t_complex	result;
+
+	result.r = ((z.r * z.r) - (z.i * z.i)) + c.r;
+	result.i = (2 * (z.r * z.i)) + c.i;
+	return (result);
 }

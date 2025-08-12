@@ -6,7 +6,7 @@
 /*   By: danielji <danielji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 09:51:40 by danielji          #+#    #+#             */
-/*   Updated: 2025/08/12 11:59:31 by danielji         ###   ########.fr       */
+/*   Updated: 2025/08/12 13:14:28 by danielji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -33,14 +33,10 @@ typedef struct s_complex
 	double	i;
 }			t_complex;
 
-typedef struct s_mlx
+typedef struct s_config
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-}	t_mlx;
-
-typedef struct s_image
-{
 	void		*img;
 	char		*addr;
 	int			bits_per_pixel;
@@ -52,24 +48,21 @@ typedef struct s_image
 	double		x_min;
 	double		y_max;
 	double		y_min;
-	//t_complex	max;
-	//t_complex	min;
-}	t_image;
+}	t_config;
 
 double	ft_abs(double n);
 t_complex	quadratic_map(t_complex z, t_complex c);
+
+void	initialize(t_config *c);
+void	init_configuration(t_config *c);
+
+void	free_and_exit(t_config *c, int status);
+int		handle_input(int keysym, t_config *c);
+
 int		is_in_mandelbrot(double r, double i);
-void	print_mandelbrot(t_image *img);
-void	print_julia(t_image *img, double cr, double ci);
+void	print_mandelbrot(t_config *config);
+void	image_pixel_put(t_config *image, int x, int y, int color);
+void	print_crosshair(t_config *config);
 
-void	image_pixel_put(t_image *image, int x, int y, int color);
-
-void	print_sq_diagonal(t_image *img);
-void	print_diagonal(t_image *img);
-void	print_frame(t_image *img);
-void	print_rectangle(t_image *img, int x_start, int y_start, int w, int h);
-void	print_crosshair(t_image *img);
-void	print_fill_rectangle(t_image *img, int x_start, int y_start, int w, int h);
-void	print_circle(t_image *img, double x0, double y0, double r);
 
 #endif

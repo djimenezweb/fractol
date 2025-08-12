@@ -6,30 +6,30 @@
 /*   By: danielji <danielji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 09:35:33 by danielji          #+#    #+#             */
-/*   Updated: 2025/08/12 12:00:22 by danielji         ###   ########.fr       */
+/*   Updated: 2025/08/12 13:13:47 by danielji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "fractol.h"
 
-void	free_and_exit(t_mlx *mlx, int status)
+void	free_and_exit(t_config *c, int status)
 {
-	if (mlx->mlx_ptr && mlx->win_ptr)
-		mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
-	if (mlx->mlx_ptr)
-		mlx_destroy_display(mlx->mlx_ptr);
+	if (c->mlx_ptr && c->win_ptr)
+		mlx_destroy_window(c->mlx_ptr, c->win_ptr);
+	if (c->mlx_ptr)
+		mlx_destroy_display(c->mlx_ptr);
 	exit(status);
 }
 
-int	handle_input(int keysym, t_mlx *mlx)
+int	handle_input(int keysym, t_config *c)
 {
 	if (keysym == XK_Escape)
-		free_and_exit(mlx, EXIT_SUCCESS);
+		free_and_exit(c, EXIT_SUCCESS);
 	ft_printf("Pressed key %d\n", keysym);
 	return (0);
 }
 
-void	image_pixel_put(t_image *image, int x, int y, int color)
+void	image_pixel_put(t_config *image, int x, int y, int color)
 {
 	char	*dst;
 
@@ -45,37 +45,25 @@ void	bad_arguments()
 
 int	main(int argc, char *argv[])
 {
-	t_mlx	mlx;
-	t_image	img;
+	t_config	config;
 
 	if (argc < 2 || argc > 4)
 		bad_arguments();
 	if (argv[1][0] != 'M' && argv[1][0] != 'J')
 		bad_arguments();
-	mlx.mlx_ptr = mlx_init();
-	if (!mlx.mlx_ptr)
-		free_and_exit(&mlx, 1);
-	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, WIDTH, HEIGHT, "HD test");
-	if (!mlx.win_ptr)
-		free_and_exit(&mlx, 1);
-	img.img = mlx_new_image(mlx.mlx_ptr, WIDTH, HEIGHT);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-	img.ratio = WIDTH / HEIGHT;
-	img.x_max = 4;
-	img.x_min = -img.x_max;
-	img.y_max = (img.x_max * HEIGHT / WIDTH );
-	img.y_min = img.x_min * HEIGHT / WIDTH;
-	img.scale = (img.x_max - img.x_min) / WIDTH;
+	initialize(&config);
+	init_configuration(&config);
 	if (argv[1][0] == 'M')
-		print_mandelbrot(&img);
+		print_mandelbrot(&config);
 	if (argv[1][0] == 'J')
 	{
-		print_julia(&img, ft_atod(argv[2]), ft_atod(argv[3]));
+		ft_printf("TO DO: Print Julia");
+		// print_julia(&img, ft_atod(argv[2]), ft_atod(argv[3]));
 	}
-	print_crosshair(&img);
-	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, img.img, 0, 0);
-	mlx_key_hook(mlx.win_ptr, handle_input, &mlx.mlx_ptr);
-	mlx_loop(mlx.mlx_ptr);
+	print_crosshair(&config);
+	mlx_put_image_to_window(config.mlx_ptr, config.win_ptr, config.img, 0, 0);
+	mlx_key_hook(config.win_ptr, handle_input, &config.mlx_ptr);
+	mlx_loop(config.mlx_ptr);
 	// Free stuff ??
 	return (0);
 }
