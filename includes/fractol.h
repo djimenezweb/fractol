@@ -22,7 +22,9 @@
 # define WIDTH	1000
 # define HEIGHT	1000
 # define ITERATIONS	100
-# define BACKGROUND	0x009966
+# define BACKGROUND	0x000054
+# define BLACK 0x000000
+# define WHITE 0xffffff
 
 /* A structure to represent complex numbers:
 - `r` for real part
@@ -71,7 +73,9 @@ int		handle_input(int keysym, t_fractol *f);
 int		cnt_iterations(t_fractol *f, t_complex pixel);
 void	render_fractal(t_fractol *f);
 
-void	image_pixel_put(t_fractol *image, int x, int y, int color);
+void	image_pixel_put(t_fractol *f, int x, int y, int color);
 void	print_crosshair(t_fractol *f);
+
+uint32_t	set_color(int i);
 
 #endif

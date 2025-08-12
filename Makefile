@@ -3,6 +3,7 @@ CC			= cc
 CFLAGS		= -Wall -Werror -Wextra
 SRC_PATH	= src/
 SRC			=	fractol.c \
+				color.c \
 				initialization.c \
 				render.c \
 				math-utils.c \
