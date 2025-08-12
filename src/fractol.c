@@ -6,12 +6,11 @@
 /*   By: danielji <danielji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 09:35:33 by danielji          #+#    #+#             */
-/*   Updated: 2025/08/12 10:51:25 by danielji         ###   ########.fr       */
+/*   Updated: 2025/08/12 12:00:22 by danielji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "fractol.h"
-#include <stdio.h>
 
 void	free_and_exit(t_mlx *mlx, int status)
 {
@@ -62,17 +61,16 @@ int	main(int argc, char *argv[])
 	img.img = mlx_new_image(mlx.mlx_ptr, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	img.ratio = WIDTH / HEIGHT;
-	img.x_max = 1.2;
+	img.x_max = 4;
 	img.x_min = -img.x_max;
-	img.y_max = img.x_max * HEIGHT / WIDTH;
+	img.y_max = (img.x_max * HEIGHT / WIDTH );
 	img.y_min = img.x_min * HEIGHT / WIDTH;
-	img.scale = ((img.x_max - img.x_min) / WIDTH);
+	img.scale = (img.x_max - img.x_min) / WIDTH;
 	if (argv[1][0] == 'M')
 		print_mandelbrot(&img);
 	if (argv[1][0] == 'J')
 	{
-		printf("initial (main): %f,%f\n", ft_atof(argv[2]), ft_atof(argv[3]));
-		print_julia(&img, ft_atof(argv[2]), ft_atof(argv[3]));
+		print_julia(&img, ft_atod(argv[2]), ft_atod(argv[3]));
 	}
 	print_crosshair(&img);
 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, img.img, 0, 0);

@@ -6,15 +6,15 @@
 /*   By: danielji <danielji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 09:51:40 by danielji          #+#    #+#             */
-/*   Updated: 2025/08/12 10:13:38 by danielji         ###   ########.fr       */
+/*   Updated: 2025/08/12 11:59:31 by danielji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include "libft/libft.h"
-# include "minilibx-linux/mlx.h"
+# include "../libft/libft.h"
+# include "../minilibx-linux/mlx.h"
 # include <stdlib.h>
 # include <math.h>
 # include <X11/keysym.h>
@@ -71,7 +71,5 @@ void	print_rectangle(t_image *img, int x_start, int y_start, int w, int h);
 void	print_crosshair(t_image *img);
 void	print_fill_rectangle(t_image *img, int x_start, int y_start, int w, int h);
 void	print_circle(t_image *img, double x0, double y0, double r);
-
-double	ft_atof(char *str);
 
 #endif

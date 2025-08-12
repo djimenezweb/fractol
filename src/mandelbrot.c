@@ -128,7 +128,6 @@ void	print_julia(t_image *img, double cr, double ci)
 	color = 0xffffff;
 	initial.r = cr;
 	initial.i = ci;
-	printf("initial: %f,%f\n", cr, ci);
 	while (x < WIDTH)
 	{
 		y = 0;
