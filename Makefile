@@ -2,7 +2,12 @@ NAME		= fractol
 CC			= cc
 CFLAGS		= -Wall -Werror -Wextra
 SRC_PATH	= src/
-SRC			= events.c fractol.c initialization.c mandelbrot.c math-utils.c print-utils.c
+SRC			=	fractol.c \
+				initialization.c \
+				render.c \
+				math-utils.c \
+				parse-args.c \
+				print-utils.c
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))
 OBJS		= $(SRCS:.c=.o)
 INCLUDES	= -I./includes -I./libft -I./minilibx-linux

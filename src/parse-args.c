@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print-utils.c                                      :+:      :+:    :+:   */
+/*   parse-args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: danielji <danielji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/08 09:19:40 by danielji          #+#    #+#             */
-/*   Updated: 2025/08/12 20:16:12 by danielji         ###   ########.fr       */
+/*   Created: 2025/08/12 20:01:21 by danielji          #+#    #+#             */
+/*   Updated: 2025/08/12 20:04:00 by danielji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	print_crosshair(t_fractol *f)
+void	bad_arguments(void)
 {
-	int	x;
-	int	y;
-	int	color;
+	ft_printf("TO DO: Bad arguments\n");
+	exit(EXIT_FAILURE);
+}
 
-	x = (WIDTH / 2) - 12;
-	y = (HEIGHT / 2) - 12;
-	color = 0xffff00;
-	while (x < (WIDTH / 2) + 12)
-	{
-		image_pixel_put(f, x, (HEIGHT / 2), color);
-		x++;
-	}
-	while (y < (HEIGHT / 2) + 12)
-	{
-		image_pixel_put(f, (WIDTH / 2), y, color);
-		y++;
-	}
+void	parse_args(int argc, char *argv[])
+{
+	if (argc < 2 || argc > 4)
+		bad_arguments();
+	if (argv[1][0] != 'M' && argv[1][0] != 'J')
+		bad_arguments();
 }

@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
@@ -6,34 +6,49 @@
 /*   By: danielji <danielji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 12:55:02 by danielji          #+#    #+#             */
-/*   Updated: 2025/08/12 16:27:57 by danielji         ###   ########.fr       */
+/*   Updated: 2025/08/12 20:53:03 by danielji         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "fractol.h"
 
-void	initialize(t_config *c)
+void	initialize(t_fractol *f)
 {
-	c->mlx_ptr = mlx_init();
-	if (!c->mlx_ptr)
-		free_and_exit(c, 1);
-	c->win_ptr = mlx_new_window(c->mlx_ptr, WIDTH, HEIGHT, "HD test");
-	if (!c->win_ptr)
-		free_and_exit(c, 1);
+	f->mlx_ptr = mlx_init();
+	if (!f->mlx_ptr)
+		free_and_exit(f, 1);
+	f->win_ptr = mlx_new_window(f->mlx_ptr, WIDTH, HEIGHT, "Fract'ol");
+	if (!f->win_ptr)
+		free_and_exit(f, 1);
 }
 
-void	init_configuration(t_config *c)
+void	init_configuration(t_fractol *f)
 {
-	c->img = mlx_new_image(c->mlx_ptr, WIDTH, HEIGHT);
-	c->addr = mlx_get_data_addr(c->img, &c->bits_per_pixel, &c->line_length, &c->endian);
-	c->ratio = WIDTH / HEIGHT;
-	c->scale = 1.0;
-	c->x_max = 1.6 / c->scale;
-	c->x_min = -1.6 / c->scale;
-	c->y_max = 1.6 / c->scale;
-	c->y_min = -1.6 / c->scale;
+	f->img = mlx_new_image(f->mlx_ptr, WIDTH, HEIGHT);
+	f->addr = mlx_get_data_addr(f->img, &f->bpp, &f->line_length, &f->endian);
+	f->ratio = WIDTH / HEIGHT;
+	f->scale = 1.0;
+	f->x_max = 1.6 / f->scale;
+	f->x_min = -1.6 / f->scale;
+	f->y_max = 1.6 / f->scale;
+	f->y_min = -1.6 / f->scale;
 	// c->y_max = ((c->x_max - c->x_min) / 2) * HEIGHT / WIDTH ;
 	// c->y_min = -1 * ((c->x_max - c->x_min) / 2) * HEIGHT / WIDTH ;
-	c->scale_x = (c->x_max - c->x_min) / WIDTH;
-	c->scale_y = (c->y_min - c->y_max) / HEIGHT;
+	f->scale_x = (f->x_max - f->x_min) / WIDTH;
+	f->scale_y = (f->y_min - f->y_max) / HEIGHT;
+}
+
+void	set_mode(t_fractol *f, char *argv[])
+{
+	if (argv[1][0] == 'M')
+		f->mode = 1;
+	if (argv[1][0] == 'J')
+	{
+		f->mode = 2;
+		f->c.r = ft_atod(argv[2]);
+		if (!argv[3])
+			f->c.i = ft_atod(argv[2]);
+		else
+			f->c.i = ft_atod(argv[3]);
+	}
 }
