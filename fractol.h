@@ -6,7 +6,7 @@
 /*   By: danielji <danielji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 09:51:40 by danielji          #+#    #+#             */
-/*   Updated: 2025/08/11 18:19:28 by danielji         ###   ########.fr       */
+/*   Updated: 2025/08/12 10:13:38 by danielji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -60,6 +60,7 @@ double	ft_abs(double n);
 t_complex	quadratic_map(t_complex z, t_complex c);
 int		is_in_mandelbrot(double r, double i);
 void	print_mandelbrot(t_image *img);
+void	print_julia(t_image *img, double cr, double ci);
 
 void	image_pixel_put(t_image *image, int x, int y, int color);
 
@@ -70,5 +71,7 @@ void	print_rectangle(t_image *img, int x_start, int y_start, int w, int h);
 void	print_crosshair(t_image *img);
 void	print_fill_rectangle(t_image *img, int x_start, int y_start, int w, int h);
 void	print_circle(t_image *img, double x0, double y0, double r);
+
+double	ft_atof(char *str);
 
 #endif

@@ -6,11 +6,12 @@
 /*   By: danielji <danielji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 09:35:33 by danielji          #+#    #+#             */
-/*   Updated: 2025/08/11 18:25:17 by danielji         ###   ########.fr       */
+/*   Updated: 2025/08/12 10:51:25 by danielji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "fractol.h"
+#include <stdio.h>
 
 void	free_and_exit(t_mlx *mlx, int status)
 {
@@ -66,7 +67,13 @@ int	main(int argc, char *argv[])
 	img.y_max = img.x_max * HEIGHT / WIDTH;
 	img.y_min = img.x_min * HEIGHT / WIDTH;
 	img.scale = ((img.x_max - img.x_min) / WIDTH);
-	print_mandelbrot(&img);
+	if (argv[1][0] == 'M')
+		print_mandelbrot(&img);
+	if (argv[1][0] == 'J')
+	{
+		printf("initial (main): %f,%f\n", ft_atof(argv[2]), ft_atof(argv[3]));
+		print_julia(&img, ft_atof(argv[2]), ft_atof(argv[3]));
+	}
 	print_crosshair(&img);
 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, img.img, 0, 0);
 	mlx_key_hook(mlx.win_ptr, handle_input, &mlx.mlx_ptr);
