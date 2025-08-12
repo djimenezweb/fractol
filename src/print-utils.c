@@ -6,7 +6,7 @@
 /*   By: danielji <danielji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 09:19:40 by danielji          #+#    #+#             */
-/*   Updated: 2025/08/09 10:10:45 by danielji         ###   ########.fr       */
+/*   Updated: 2025/08/12 16:11:40 by danielji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -21,12 +21,12 @@ void	print_crosshair(t_config *config)
 	x = (WIDTH / 2) - 12;
 	y = (HEIGHT / 2) - 12;
 	color = 0xffff00;
-	while(x < (WIDTH / 2) + 12)
+	while (x < (WIDTH / 2) + 12)
 	{
 		image_pixel_put(config, x, (HEIGHT / 2), color);
 		x++;
 	}
-	while(y < (HEIGHT / 2) + 12)
+	while (y < (HEIGHT / 2) + 12)
 	{
 		image_pixel_put(config, (WIDTH / 2), y, color);
 		y++;

@@ -6,7 +6,7 @@
 /*   By: danielji <danielji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 09:51:40 by danielji          #+#    #+#             */
-/*   Updated: 2025/08/12 13:14:28 by danielji         ###   ########.fr       */
+/*   Updated: 2025/08/12 16:26:04 by danielji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -19,9 +19,9 @@
 # include <math.h>
 # include <X11/keysym.h>
 
-# define WIDTH	1200
-# define HEIGHT	1200
-# define ITERATIONS	80
+# define WIDTH	1920
+# define HEIGHT	1920
+# define ITERATIONS	100
 # define BACKGROUND	0x009966
 
 /* A structure to represent complex numbers:
@@ -48,6 +48,8 @@ typedef struct s_config
 	double		x_min;
 	double		y_max;
 	double		y_min;
+	double		scale_x;
+	double		scale_y;
 }	t_config;
 
 double	ft_abs(double n);
@@ -59,10 +61,10 @@ void	init_configuration(t_config *c);
 void	free_and_exit(t_config *c, int status);
 int		handle_input(int keysym, t_config *c);
 
-int		is_in_mandelbrot(double r, double i);
+int		is_in_mandelbrot(t_complex c);
 void	print_mandelbrot(t_config *config);
+
 void	image_pixel_put(t_config *image, int x, int y, int color);
 void	print_crosshair(t_config *config);
-
 
 #endif

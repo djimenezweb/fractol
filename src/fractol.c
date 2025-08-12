@@ -6,7 +6,7 @@
 /*   By: danielji <danielji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 09:35:33 by danielji          #+#    #+#             */
-/*   Updated: 2025/08/12 13:13:47 by danielji         ###   ########.fr       */
+/*   Updated: 2025/08/12 16:10:03 by danielji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -34,12 +34,12 @@ void	image_pixel_put(t_config *image, int x, int y, int color)
 	char	*dst;
 
 	dst = image->addr + (y * image->line_length + x * (image->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	*(unsigned int *)dst = color;
 }
 
-void	bad_arguments()
+void	bad_arguments(void)
 {
-	ft_printf("To do: Bad arguments\n");
+	ft_printf("TO DO: Bad arguments\n");
 	exit(EXIT_FAILURE);
 }
 
