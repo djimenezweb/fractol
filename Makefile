@@ -2,7 +2,7 @@ NAME		= fractol
 CC			= cc
 CFLAGS		= -Wall -Werror -Wextra
 SRC_PATH	= src/
-SRC			=	fractol.c \
+SRC			=	main.c \
 				color.c \
 				initialization.c \
 				render.c \
