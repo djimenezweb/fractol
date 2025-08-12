@@ -6,21 +6,21 @@
 /*   By: danielji <danielji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 09:51:40 by danielji          #+#    #+#             */
-/*   Updated: 2025/08/12 16:26:04 by danielji         ###   ########.fr       */
+/*   Updated: 2025/08/12 19:55:02 by danielji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include "../libft/libft.h"
-# include "../minilibx-linux/mlx.h"
+# include "libft.h"
+# include "mlx.h"
 # include <stdlib.h>
 # include <math.h>
 # include <X11/keysym.h>
 
-# define WIDTH	1920
-# define HEIGHT	1920
+# define WIDTH	1000
+# define HEIGHT	1000
 # define ITERATIONS	100
 # define BACKGROUND	0x009966
 

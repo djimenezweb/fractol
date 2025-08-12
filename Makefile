@@ -5,7 +5,7 @@ SRC_PATH	= src/
 SRC			= events.c fractol.c initialization.c mandelbrot.c math-utils.c print-utils.c
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))
 OBJS		= $(SRCS:.c=.o)
-INC			= -I./includes/
+INCLUDES	= -I./includes -I./libft -I./minilibx-linux
 
 # Minilibx
 MLX_PATH	= minilibx-linux
@@ -37,7 +37,7 @@ $(NAME) : $(OBJS)
 
 %.o : %.c
 	@echo "=== Creating object files ==="
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
+	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
 
 clean :
 	@echo "=== Removing .o files ==="
