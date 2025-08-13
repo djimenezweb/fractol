@@ -41,10 +41,10 @@ void	init_configuration(t_fractol *f)
 void	set_mode(t_fractol *f, char *argv[])
 {
 	if (argv[1][0] == 'M')
-		f->mode = 1;
+		f->mode = MANDELBROT;
 	if (argv[1][0] == 'J')
 	{
-		f->mode = 2;
+		f->mode = JULIA;
 		f->c.r = ft_atod(argv[2]);
 		if (!argv[3])
 			f->c.i = ft_atod(argv[2]);

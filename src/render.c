@@ -33,12 +33,12 @@ int	cnt_iterations(t_fractol *f, t_complex pixel)
 {
 	t_complex	z;
 
-	if (f->mode == 1)
+	if (f->mode == MANDELBROT)
 	{
 		z = init_complex(0.0, 0.0);
 		return (fractal_iterations(z, pixel));
 	}
-	if (f->mode == 2)
+	if (f->mode == JULIA)
 		return (fractal_iterations(pixel, f->c));
 	return (0);
 }
