@@ -26,7 +26,7 @@ void	init_configuration(t_fractol *f)
 {
 	f->img = mlx_new_image(f->mlx_ptr, WIDTH, HEIGHT);
 	f->addr = mlx_get_data_addr(f->img, &f->bpp, &f->line_length, &f->endian);
-	f->ratio = WIDTH / HEIGHT;
+	// f->ratio = WIDTH / HEIGHT;
 	// f->scale = 1.0;
 	f->x_max = 1.6;
 	f->x_min = -1.6;

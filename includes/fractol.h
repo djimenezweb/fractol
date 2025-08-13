@@ -49,7 +49,7 @@ typedef struct s_fractol
 	int			endian;
 	int			mode;
 	t_complex	c;
-	double		ratio;
+	// double		ratio;
 	// double		scale;
 	double		x_max;
 	double		x_min;
