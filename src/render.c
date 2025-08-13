@@ -43,6 +43,14 @@ int	cnt_iterations(t_fractol *f, t_complex pixel)
 	return (0);
 }
 
+void	image_pixel_put(t_fractol *f, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = f->addr + (y * f->line_length + x * (f->bpp / 8));
+	*(unsigned int *)dst = color;
+}
+
 void	render_fractal(t_fractol *f)
 {
 	int			i;
@@ -66,4 +74,5 @@ void	render_fractal(t_fractol *f)
 		}
 		x++;
 	}
+	mlx_put_image_to_window(f->mlx_ptr, f->win_ptr, f->img, 0, 0);
 }
