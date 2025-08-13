@@ -37,6 +37,12 @@ typedef struct s_complex
 	double	i;
 }			t_complex;
 
+typedef struct s_axis
+{
+	double	min;
+	double	max;
+}			t_axis;
+
 /* bpp = bits_per_pixel */
 typedef struct s_fractol
 {
@@ -51,10 +57,12 @@ typedef struct s_fractol
 	t_complex	c;
 	// double		ratio;
 	// double		scale;
-	double		x_max;
-	double		x_min;
-	double		y_max;
-	double		y_min;
+	t_axis		x;
+	t_axis		y;
+	// double		x_max;
+	// double		x_min;
+	// double		y_max;
+	// double		y_min;
 	double		scale_x;
 	double		scale_y;
 }			t_fractol;
@@ -62,6 +70,7 @@ typedef struct s_fractol
 double	ft_abs(double n);
 t_complex	quadratic_map(t_complex z, t_complex c);
 t_complex	init_complex(double r, double i);
+t_axis		init_axis(double min, double max);
 
 void	parse_args(int argc, char *argv[]);
 

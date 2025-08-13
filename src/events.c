@@ -32,12 +32,12 @@ XK_KP_Subtract                   0xffad
 
 void	scale(t_fractol *f, double factor)
 {
-	f->x_max *= factor;
-	f->x_min *= factor;
-	f->y_max *= factor;
-	f->y_min *= factor;
-	f->scale_x = (f->x_max - f->x_min) / WIDTH;
-	f->scale_y = (f->y_min - f->y_max) / HEIGHT;
+	f->x.max *= factor;
+	f->x.min *= factor;
+	f->y.max *= factor;
+	f->y.min *= factor;
+	f->scale_x = (f->x.max - f->x.min) / WIDTH;
+	f->scale_y = (f->y.min - f->y.max) / HEIGHT;
 }
 
 int	handle_key(int keysym, t_fractol *f)

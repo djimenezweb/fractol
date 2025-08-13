@@ -21,6 +21,15 @@ t_complex	init_complex(double r, double i)
 	return (c);
 }
 
+t_axis	init_axis(double min, double max)
+{
+	t_axis	a;
+
+	a.min = min;
+	a.max = max;
+	return (a);
+}
+
 /* Returns the absolute value of a double floating number `n` */
 double	ft_abs(double n)
 {
