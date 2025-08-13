@@ -20,11 +20,9 @@ void	initialize(t_fractol *f)
 	f->win_ptr = mlx_new_window(f->mlx_ptr, WIDTH, HEIGHT, "Fract'ol");
 	if (!f->win_ptr)
 		free_and_exit(f, 1);
-}
-
-void	init_configuration(t_fractol *f)
-{
 	f->img = mlx_new_image(f->mlx_ptr, WIDTH, HEIGHT);
+	if (!f->img)
+		free_and_exit(f, 1);
 	f->addr = mlx_get_data_addr(f->img, &f->bpp, &f->line_length, &f->endian);
 	f->x = init_axis(-1.6, 1.6);
 	f->y = init_axis(-1.6, 1.6);

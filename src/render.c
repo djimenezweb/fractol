@@ -53,14 +53,13 @@ void	image_pixel_put(t_fractol *f, int x, int y, int color)
 
 void	render_fractal(t_fractol *f)
 {
-	int			i;
 	int			x;
 	int			y;
+	double		scale;
 	t_complex	pixel;
 	uint32_t	color;
 
-	double scale = (f->x.max - f->x.min) / WIDTH;
-
+	scale = (f->x.max - f->x.min) / WIDTH;
 	mlx_clear_window(f->mlx_ptr, f->win_ptr);
 	x = 0;
 	while (x < WIDTH)
@@ -70,8 +69,7 @@ void	render_fractal(t_fractol *f)
 		{
 			pixel.r = f->x.min + (double)x * scale;
 			pixel.i = f->y.min + (double)y * scale;
-			i = cnt_iterations(f, pixel);
-			color = set_color(i);
+			color = set_color(cnt_iterations(f, pixel));
 			image_pixel_put(f, x, y, (int)color);
 			y++;
 		}

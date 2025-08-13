@@ -12,6 +12,8 @@
 
 #include "fractol.h"
 
+/* TO DO: TOO MANY FUNCTIONS */
+
 void	move(t_axis *axis, int direction)
 {
 	axis->max += 0.1 * (double)direction;

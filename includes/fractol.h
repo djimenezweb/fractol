@@ -64,7 +64,6 @@ t_complex	quadratic_map(t_complex z, t_complex c);
 t_complex	init_complex(double r, double i);
 t_axis		init_axis(double min, double max);
 void		initialize(t_fractol *f);
-void		init_configuration(t_fractol *f);
 void		set_mode(t_fractol *f, char *argv[]);
 void		parse_args(t_fractol *f, int argc, char *argv[]);
 void		free_and_exit(t_fractol *f, int status);
