@@ -19,9 +19,9 @@
 # include <math.h>
 # include <X11/keysym.h>
 
-# define WIDTH	1000
-# define HEIGHT	1000
-# define ITERATIONS	100
+# define WIDTH	1024
+# define HEIGHT	1024
+# define ITERATIONS	64
 # define MANDELBROT	1
 # define JULIA	2
 # define BACKGROUND	0x000054
@@ -50,7 +50,7 @@ typedef struct s_fractol
 	int			mode;
 	t_complex	c;
 	double		ratio;
-	double		scale;
+	// double		scale;
 	double		x_max;
 	double		x_min;
 	double		y_max;
@@ -70,7 +70,8 @@ void	init_configuration(t_fractol *f);
 void	set_mode(t_fractol *f, char *argv[]);
 
 void	free_and_exit(t_fractol *f, int status);
-int		handle_input(int keysym, t_fractol *f);
+int		handle_key(int keysym, t_fractol *f);
+int		handle_mouse(int e, t_fractol *f);
 void	listen_events(t_fractol *f);
 
 int		cnt_iterations(t_fractol *f, t_complex pixel);
