@@ -7,9 +7,8 @@ SRC			=	main.c \
 				events.c \
 				initialization.c \
 				render.c \
-				math-utils.c \
-				parse-args.c \
-				print-utils.c
+				utils.c \
+				parse-args.c
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))
 OBJS		= $(SRCS:.c=.o)
 INCLUDES	= -I./includes -I./libft -I./minilibx-linux

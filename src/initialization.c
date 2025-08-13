@@ -29,18 +29,3 @@ void	init_configuration(t_fractol *f)
 	f->x = init_axis(-1.6, 1.6);
 	f->y = init_axis(-1.6, 1.6);
 }
-
-void	set_mode(t_fractol *f, char *argv[])
-{
-	if (argv[1][0] == 'M')
-		f->mode = MANDELBROT;
-	if (argv[1][0] == 'J')
-	{
-		f->mode = JULIA;
-		f->c.r = ft_atod(argv[2]);
-		if (!argv[3])
-			f->c.i = ft_atod(argv[2]);
-		else
-			f->c.i = ft_atod(argv[3]);
-	}
-}

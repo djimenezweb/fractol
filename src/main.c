@@ -32,12 +32,10 @@ int	main(int argc, char *argv[])
 {
 	t_fractol	f;
 
-	parse_args(argc, argv);
+	parse_args(&f, argc, argv);
 	initialize(&f);
 	init_configuration(&f);
-	set_mode(&f, argv);
 	render_fractal(&f);
-	print_crosshair(&f);
 	listen_events(&f);
 	mlx_loop(f.mlx_ptr);
 	return (0);

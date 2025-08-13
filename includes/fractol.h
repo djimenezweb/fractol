@@ -59,28 +59,21 @@ typedef struct s_fractol
 	t_axis		y;
 }			t_fractol;
 
-double	ft_abs(double n);
+double		ft_abs(double n);
 t_complex	quadratic_map(t_complex z, t_complex c);
 t_complex	init_complex(double r, double i);
 t_axis		init_axis(double min, double max);
-
-void	parse_args(int argc, char *argv[]);
-
-void	initialize(t_fractol *f);
-void	init_configuration(t_fractol *f);
-void	set_mode(t_fractol *f, char *argv[]);
-
-void	free_and_exit(t_fractol *f, int status);
-int		handle_key(int keysym, t_fractol *f);
-int	handle_mouse(int e, int x, int y, t_fractol *f);
-void	listen_events(t_fractol *f);
-
-int		cnt_iterations(t_fractol *f, t_complex pixel);
-void	render_fractal(t_fractol *f);
-
-void	image_pixel_put(t_fractol *f, int x, int y, int color);
-void	print_crosshair(t_fractol *f);
-
+void		initialize(t_fractol *f);
+void		init_configuration(t_fractol *f);
+void		set_mode(t_fractol *f, char *argv[]);
+void		parse_args(t_fractol *f, int argc, char *argv[]);
+void		free_and_exit(t_fractol *f, int status);
+int			handle_key(int keysym, t_fractol *f);
+int			handle_mouse(int e, int x, int y, t_fractol *f);
+void		listen_events(t_fractol *f);
+int			cnt_iterations(t_fractol *f, t_complex pixel);
+void		render_fractal(t_fractol *f);
+void		image_pixel_put(t_fractol *f, int x, int y, int color);
 uint32_t	set_color(int i);
 
 #endif
