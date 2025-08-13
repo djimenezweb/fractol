@@ -5,10 +5,11 @@ SRC_PATH	= src/
 SRC			=	main.c \
 				color.c \
 				events.c \
+				free.c \
 				initialization.c \
+				parse-args.c \
 				render.c \
-				utils.c \
-				parse-args.c
+				utils.c
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))
 OBJS		= $(SRCS:.c=.o)
 INCLUDES	= -I./includes -I./libft -I./minilibx-linux

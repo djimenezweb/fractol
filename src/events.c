@@ -12,8 +12,6 @@
 
 #include "fractol.h"
 
-/* TO DO: TOO MANY FUNCTIONS */
-
 void	move(t_axis *axis, int direction)
 {
 	axis->max += 0.1 * (double)direction;
@@ -57,12 +55,6 @@ int	handle_mouse(int e, int x, int y, t_fractol *f)
 	else
 		return (0);
 	render_fractal(f);
-	return (0);
-}
-
-int	close_window(t_fractol *f)
-{
-	free_and_exit(f, 0);
 	return (0);
 }
 
