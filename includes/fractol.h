@@ -71,7 +71,7 @@ void	set_mode(t_fractol *f, char *argv[]);
 
 void	free_and_exit(t_fractol *f, int status);
 int		handle_key(int keysym, t_fractol *f);
-int		handle_mouse(int e, t_fractol *f);
+int	handle_mouse(int e, int x, int y, t_fractol *f);
 void	listen_events(t_fractol *f);
 
 int		cnt_iterations(t_fractol *f, t_complex pixel);

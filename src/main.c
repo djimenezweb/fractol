@@ -14,6 +14,10 @@
 
 void	free_and_exit(t_fractol *f, int status)
 {
+	if (!f)
+		exit(status);
+	if (f->img)
+		mlx_destroy_image(f->mlx_ptr, f->img);
 	if (f->mlx_ptr && f->win_ptr)
 		mlx_destroy_window(f->mlx_ptr, f->win_ptr);
 	if (f->mlx_ptr)

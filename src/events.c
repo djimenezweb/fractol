@@ -53,25 +53,26 @@ int	handle_key(int keysym, t_fractol *f)
 	return (0);
 }
 
-int	handle_mouse(int e, t_fractol *f)
+int	handle_mouse(int e, int x, int y, t_fractol *f)
 {
+	ft_printf("Mouse event %d: %d,%d\n", e, x, y);
 	if (e == 4)
-	{
-		ft_printf("Mouse event %d\n", e);
 		scale(f, 0.5);
-		render_fractal(f);
-	}
 	if (e == 5)
-	{
-		ft_printf("Mouse event %d\n", e);
 		scale(f, 2);
-		render_fractal(f);
-	}
+	render_fractal(f);
+	return (0);
+}
+
+int	close_window(t_fractol *f)
+{
+	free_and_exit(f, 0);
 	return (0);
 }
 
 void	listen_events(t_fractol *f)
 {
+	mlx_hook(f->win_ptr, 17, 0, close_window, &f->mlx_ptr);
 	mlx_key_hook(f->win_ptr, handle_key, &f->mlx_ptr);
 	mlx_mouse_hook(f->win_ptr, handle_mouse, &f->mlx_ptr);
 }
