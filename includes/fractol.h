@@ -55,16 +55,8 @@ typedef struct s_fractol
 	int			endian;
 	int			mode;
 	t_complex	c;
-	// double		ratio;
-	// double		scale;
 	t_axis		x;
 	t_axis		y;
-	// double		x_max;
-	// double		x_min;
-	// double		y_max;
-	// double		y_min;
-	double		scale_x;
-	double		scale_y;
 }			t_fractol;
 
 double	ft_abs(double n);

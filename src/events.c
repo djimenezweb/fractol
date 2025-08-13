@@ -14,8 +14,8 @@
 
 void	move(t_axis *axis, int direction)
 {
-	axis->max = axis->max + (direction * (axis->max / 10));
-	axis->min = axis->min + (direction * (axis->min / 10));
+	axis->max += 0.1 * (double)direction;
+	axis->min += 0.1 * (double)direction;
 }
 
 void	scale(t_fractol *f, double factor)
@@ -24,34 +24,36 @@ void	scale(t_fractol *f, double factor)
 	f->x.min *= factor;
 	f->y.max *= factor;
 	f->y.min *= factor;
-	f->scale_x = (f->x.max - f->x.min) / WIDTH;
-	f->scale_y = (f->y.min - f->y.max) / HEIGHT;
 }
 
 int	handle_key(int keysym, t_fractol *f)
 {
 	if (keysym == XK_Escape)
 		free_and_exit(f, EXIT_SUCCESS);
-	if (keysym == XK_Left)
-		move(&(f->x), 1);
-	if (keysym == XK_Right)
+	else if (keysym == XK_Left)
 		move(&(f->x), -1);
-	if (keysym == XK_Up)
-		move(&(f->y), 1);
-	if (keysym == XK_Down)
+	else if (keysym == XK_Right)
+		move(&(f->x), 1);
+	else if (keysym == XK_Up)
 		move(&(f->y), -1);
+	else if (keysym == XK_Down)
+		move(&(f->y), 1);
+	else
+		return (0);
 	render_fractal(f);
-	ft_printf("Pressed key %d\n", keysym);
 	return (0);
 }
 
 int	handle_mouse(int e, int x, int y, t_fractol *f)
 {
-	ft_printf("Mouse event %d: %d,%d\n", e, x, y);
+	(void)x;
+	(void)y;
 	if (e == 4)
 		scale(f, 0.5);
-	if (e == 5)
+	else if (e == 5)
 		scale(f, 2);
+	else
+		return (0);
 	render_fractal(f);
 	return (0);
 }

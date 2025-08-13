@@ -59,6 +59,8 @@ void	render_fractal(t_fractol *f)
 	t_complex	pixel;
 	uint32_t	color;
 
+	double scale = (f->x.max - f->x.min) / WIDTH;
+
 	mlx_clear_window(f->mlx_ptr, f->win_ptr);
 	x = 0;
 	while (x < WIDTH)
@@ -66,8 +68,8 @@ void	render_fractal(t_fractol *f)
 		y = 0;
 		while (y < HEIGHT)
 		{
-			pixel.r = f->x.min + (double)x * f->scale_x;
-			pixel.i = f->y.max + (double)y * f->scale_y;
+			pixel.r = f->x.min + (double)x * scale;
+			pixel.i = f->y.min + (double)y * scale;
 			i = cnt_iterations(f, pixel);
 			color = set_color(i);
 			image_pixel_put(f, x, y, (int)color);
