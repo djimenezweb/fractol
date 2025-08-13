@@ -71,6 +71,7 @@ void	set_mode(t_fractol *f, char *argv[]);
 
 void	free_and_exit(t_fractol *f, int status);
 int		handle_input(int keysym, t_fractol *f);
+void	listen_events(t_fractol *f);
 
 int		cnt_iterations(t_fractol *f, t_complex pixel);
 void	render_fractal(t_fractol *f);

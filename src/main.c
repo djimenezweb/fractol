@@ -17,7 +17,10 @@ void	free_and_exit(t_fractol *f, int status)
 	if (f->mlx_ptr && f->win_ptr)
 		mlx_destroy_window(f->mlx_ptr, f->win_ptr);
 	if (f->mlx_ptr)
+	{
 		mlx_destroy_display(f->mlx_ptr);
+		free(f->mlx_ptr);
+	}
 	exit(status);
 }
 
@@ -31,7 +34,7 @@ int	main(int argc, char *argv[])
 	set_mode(&f, argv);
 	render_fractal(&f);
 	print_crosshair(&f);
-	mlx_key_hook(f.win_ptr, handle_input, &f.mlx_ptr);
+	listen_events(&f);
 	mlx_loop(f.mlx_ptr);
 	return (0);
 }

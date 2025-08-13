@@ -4,12 +4,12 @@ CFLAGS		= -Wall -Werror -Wextra
 SRC_PATH	= src/
 SRC			=	main.c \
 				color.c \
-				events.c  \
+				events.c \
 				initialization.c \
+				render.c \
 				math-utils.c \
 				parse-args.c \
 				print-utils.c
-				render.c \
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))
 OBJS		= $(SRCS:.c=.o)
 INCLUDES	= -I./includes -I./libft -I./minilibx-linux
