@@ -12,23 +12,11 @@
 
 #include "fractol.h"
 
-/* 
-XK_Home     
-XK_Left       Move left, left arrow
-XK_Up         Move up, up arrow
-XK_Right      Move right, right arrow
-XK_Down       Move down, down arrow
-XK_Prior      Prior, previous
-XK_Page_Up  
-XK_Next       Next
-XK_Page_Down
-XK_End        EOL
-XK_Begin      BOL
-
-XK_KP_Add
-XK_KP_Space
-XK_KP_Subtract                   0xffad
- */
+void	move(t_axis *axis, int direction)
+{
+	axis->max = axis->max + (direction * (axis->max / 10));
+	axis->min = axis->min + (direction * (axis->min / 10));
+}
 
 void	scale(t_fractol *f, double factor)
 {
@@ -45,9 +33,13 @@ int	handle_key(int keysym, t_fractol *f)
 	if (keysym == XK_Escape)
 		free_and_exit(f, EXIT_SUCCESS);
 	if (keysym == XK_Left)
-		scale(f, 0.5);
+		move(&(f->x), 1);
 	if (keysym == XK_Right)
-		scale(f, 2);
+		move(&(f->x), -1);
+	if (keysym == XK_Up)
+		move(&(f->y), 1);
+	if (keysym == XK_Down)
+		move(&(f->y), -1);
 	render_fractal(f);
 	ft_printf("Pressed key %d\n", keysym);
 	return (0);
