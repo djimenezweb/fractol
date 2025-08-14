@@ -20,7 +20,7 @@ void	move(t_axis *axis, int direction)
 
 void	reframe(t_fractol *f, int x, int y)
 {
-	double scale_x;
+	double	scale_x;
 
 	scale_x = (f->x.max - f->x.min) / WIDTH;
 	ft_printf("Mouse: (%d,%d) -> (%d,%d)\n", x, y, x - (WIDTH / 2), y - (HEIGHT / 2));
@@ -36,7 +36,7 @@ void	scale(t_fractol *f, double factor)
 	f->x.max *= factor;
 	f->x.min *= factor;
 	f->y.max *= factor;
-	f->y.min *= factor;	
+	f->y.min *= factor;
 }
 
 int	handle_key(int keysym, t_fractol *f)
