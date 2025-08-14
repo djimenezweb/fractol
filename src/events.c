@@ -18,12 +18,25 @@ void	move(t_axis *axis, int direction)
 	axis->min += 0.1 * (double)direction;
 }
 
+void	reframe(t_fractol *f, int x, int y)
+{
+	double scale_x;
+
+	scale_x = (f->x.max - f->x.min) / WIDTH;
+	ft_printf("Mouse: (%d,%d) -> (%d,%d)\n", x, y, x - (WIDTH / 2), y - (HEIGHT / 2));
+	f->x.max = f->x.max + ((double)x - (WIDTH / 2)) * scale_x;
+	f->x.min = f->x.min + ((double)x - (WIDTH / 2)) * scale_x;
+	f->y.max = f->y.max + ((double)y - (HEIGHT / 2)) * scale_x;
+	f->y.min = f->y.min + ((double)y - (HEIGHT / 2)) * scale_x;
+	//scale(f, 0.5);
+}
+
 void	scale(t_fractol *f, double factor)
 {
 	f->x.max *= factor;
 	f->x.min *= factor;
 	f->y.max *= factor;
-	f->y.min *= factor;
+	f->y.min *= factor;	
 }
 
 int	handle_key(int keysym, t_fractol *f)
@@ -49,9 +62,15 @@ int	handle_mouse(int e, int x, int y, t_fractol *f)
 	(void)x;
 	(void)y;
 	if (e == 4)
+	{
+		reframe(f, x, y);
 		scale(f, 0.5);
+	}
 	else if (e == 5)
+	{
+		reframe(f, x, y);
 		scale(f, 2);
+	}
 	else
 		return (0);
 	render_fractal(f);

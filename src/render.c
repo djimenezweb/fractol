@@ -51,6 +51,27 @@ void	image_pixel_put(t_fractol *f, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+void	print_crosshair(t_fractol *f)
+{
+	int	x;
+	int	y;
+	int	color;
+
+	x = (WIDTH / 2) - 12;
+	y = (HEIGHT / 2) - 12;
+	color = 0xffff00;
+	while (x < (WIDTH / 2) + 12)
+	{
+		image_pixel_put(f, x, (HEIGHT / 2), color);
+		x++;
+	}
+	while (y < (HEIGHT / 2) + 12)
+	{
+		image_pixel_put(f, (WIDTH / 2), y, color);
+		y++;
+	}
+}
+
 void	render_fractal(t_fractol *f)
 {
 	int			x;
@@ -75,5 +96,6 @@ void	render_fractal(t_fractol *f)
 		}
 		x++;
 	}
+	print_crosshair(f);
 	mlx_put_image_to_window(f->mlx_ptr, f->win_ptr, f->img, 0, 0);
 }
