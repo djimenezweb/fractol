@@ -18,18 +18,33 @@ void	bad_arguments(void)
 	exit(EXIT_FAILURE);
 }
 
-void	set_mode(t_fractol *f, char *argv[])
+void	set_mode(t_fractol *f, char *str)
 {
-	if (argv[1][0] == 'M')
-		f->mode = MANDELBROT;
-	if (argv[1][0] == 'J')
+	int	i;
+
+	i = 0;
+	while (str[i])
 	{
-		f->mode = JULIA;
-		f->c.r = ft_atod(argv[2]);
-		if (!argv[3])
-			f->c.i = ft_atod(argv[2]);
+		str[i] = ft_toupper(str[i]);
+		i++;
+	}
+	if (i == 1)
+	{
+		if (str[0] == 'M')
+			f->mode = MANDELBROT;
+		else if (str[0] == 'J')
+			f->mode = JULIA;
 		else
-			f->c.i = ft_atod(argv[3]);
+			bad_arguments();
+	}
+	else
+	{
+		if (!ft_strncmp(str, "MANDELBROT", i + 1))
+			f->mode = MANDELBROT;
+		else if (!ft_strncmp(str, "JULIA", i + 1))
+			f->mode = JULIA;
+		else
+			bad_arguments();
 	}
 }
 
@@ -37,7 +52,21 @@ void	parse_args(t_fractol *f, int argc, char *argv[])
 {
 	if (argc < 2 || argc > 4)
 		bad_arguments();
-	if (argv[1][0] != 'M' && argv[1][0] != 'J')
+	set_mode(f, argv[1]);
+	if (f->mode == MANDELBROT)
+	{
+		if (argc > 2)
+			bad_arguments();
+	}
+	else if (f->mode == JULIA)
+	{
+		if (!argv[2])
+			f->c = init_complex(-0.5125, 0.5213);
+		else if (argv[2] && !argv[3])
+			f->c = init_complex(ft_atod(argv[2]), ft_atod(argv[2]));
+		else
+			f->c = init_complex(ft_atod(argv[2]), ft_atod(argv[3]));
+	}
+	else
 		bad_arguments();
-	set_mode(f, argv);
 }

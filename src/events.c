@@ -63,12 +63,12 @@ int	handle_mouse(int e, int x, int y, t_fractol *f)
 	(void)y;
 	if (e == 4)
 	{
-		reframe(f, x, y);
+		//reframe(f, x, y);
 		scale(f, 0.5);
 	}
 	else if (e == 5)
 	{
-		reframe(f, x, y);
+		//reframe(f, x, y);
 		scale(f, 2);
 	}
 	else

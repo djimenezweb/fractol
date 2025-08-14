@@ -89,7 +89,7 @@ void	render_fractal(t_fractol *f)
 		while (y < HEIGHT)
 		{
 			pixel.r = f->x.min + (double)x * scale;
-			pixel.i = f->y.min + (double)y * scale;
+			pixel.i = f->y.max - (double)y * scale;
 			color = set_color(cnt_iterations(f, pixel));
 			image_pixel_put(f, x, y, (int)color);
 			y++;

@@ -83,7 +83,7 @@ void		initialize(t_fractol *f);
 /* parse-args.c */
 
 void		bad_arguments(void);
-void		set_mode(t_fractol *f, char *argv[]);
+void		set_mode(t_fractol *f, char *str);
 void		parse_args(t_fractol *f, int argc, char *argv[]);
 
 /* render.c */
