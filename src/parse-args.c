@@ -18,6 +18,16 @@ void	bad_arguments(void)
 	exit(EXIT_FAILURE);
 }
 
+void	check_character(t_fractol *f, char c)
+{
+	if (c == 'M')
+		f->mode = MANDELBROT;
+	else if (c == 'J')
+		f->mode = JULIA;
+	else
+		bad_arguments();
+}
+
 void	set_mode(t_fractol *f, char *str)
 {
 	int	i;
@@ -29,14 +39,7 @@ void	set_mode(t_fractol *f, char *str)
 		i++;
 	}
 	if (i == 1)
-	{
-		if (str[0] == 'M')
-			f->mode = MANDELBROT;
-		else if (str[0] == 'J')
-			f->mode = JULIA;
-		else
-			bad_arguments();
-	}
+		check_character(f, str[0]);
 	else
 	{
 		if (!ft_strncmp(str, "MANDELBROT", i + 1))
