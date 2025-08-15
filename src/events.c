@@ -12,25 +12,24 @@
 
 #include "fractol.h"
 
-void	move(t_axis *axis, int direction)
-{
-	axis->max += 0.1 * (double)direction;
-	axis->min += 0.1 * (double)direction;
-}
-
+/* TO DO
+This function is supposed to scale and move the image
+according to the mouse position
+DOES NOT WORK */
 void	reframe(t_fractol *f, int x, int y)
 {
-	double	scale_x;
+	double	scale;
 
-	scale_x = (f->x.max - f->x.min) / WIDTH;
+	scale = (ft_abs(f->x.max) + ft_abs(f->x.min)) / WIDTH;
 	ft_printf("Mouse: (%d,%d) -> (%d,%d)\n", x, y, x - (WIDTH / 2), y - (HEIGHT / 2));
-	f->x.max = f->x.max + ((double)x - (WIDTH / 2)) * scale_x;
-	f->x.min = f->x.min + ((double)x - (WIDTH / 2)) * scale_x;
-	f->y.max = f->y.max + ((double)y - (HEIGHT / 2)) * scale_x;
-	f->y.min = f->y.min + ((double)y - (HEIGHT / 2)) * scale_x;
+	f->x.max = f->x.max + ((double)x - (WIDTH / 2)) * scale;
+	f->x.min = f->x.min + ((double)x - (WIDTH / 2)) * scale;
+	f->y.max = f->y.max + ((double)y - (HEIGHT / 2)) * scale;
+	f->y.min = f->y.min + ((double)y - (HEIGHT / 2)) * scale;
 	//scale(f, 0.5);
 }
 
+/* Sets new coordinate values according to scaling `factor` */
 void	scale(t_fractol *f, double factor)
 {
 	f->x.max *= factor;
@@ -39,6 +38,17 @@ void	scale(t_fractol *f, double factor)
 	f->y.min *= factor;
 }
 
+/* Sets new `min` and `max` values for a single axis (`x` or `y`),
+effectively reframing the image in just one axis */
+void	move(t_axis *axis, int direction)
+{
+	axis->max += 0.1 * (double)direction;
+	axis->min += 0.1 * (double)direction;
+}
+
+/* - Exits program when `Esc` is pressed
+- Calls `move` when arrow keys are pressed
+- Renders a new image */
 int	handle_key(int keysym, t_fractol *f)
 {
 	if (keysym == XK_Escape)
@@ -48,25 +58,27 @@ int	handle_key(int keysym, t_fractol *f)
 	else if (keysym == XK_Right)
 		move(&(f->x), 1);
 	else if (keysym == XK_Up)
-		move(&(f->y), -1);
-	else if (keysym == XK_Down)
 		move(&(f->y), 1);
+	else if (keysym == XK_Down)
+		move(&(f->y), -1);
 	else
 		return (0);
 	render_fractal(f);
 	return (0);
 }
 
+/* - Calls `scale` when scrolling the wheel mouse up (`4`) or down (`5`)
+- Renders a new image */
 int	handle_mouse(int e, int x, int y, t_fractol *f)
 {
 	(void)x;
 	(void)y;
-	if (e == 4)
+	if (e == SCROLL_UP)
 	{
 		//reframe(f, x, y);
 		scale(f, 0.5);
 	}
-	else if (e == 5)
+	else if (e == SCROLL_DOWN)
 	{
 		//reframe(f, x, y);
 		scale(f, 2);
