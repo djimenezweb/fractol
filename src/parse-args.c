@@ -12,10 +12,20 @@
 
 #include "fractol.h"
 
-/* TO DO */
+/* Shows help message and exits program */
 void	bad_arguments(void)
 {
-	ft_printf("TO DO: Bad arguments\n");
+	ft_printf("Run program with the following arguments:\n");
+	ft_printf("./fractol M or Mandelbrot for Mandelbrot set\n");
+	ft_printf("./fractol J or Julia for Julia set\n");
+	ft_printf("  Suggested Julia parameters:\n");
+	ft_printf("  -0.835   -0.2321    |    0     -0.8\n");
+	ft_printf("  -0.8      0.156     |    0.285  0\n");
+	ft_printf("  -0.70176 -0.3842    |    0.285  0.01\n");
+	ft_printf("  -0.7269   0.1889    |    0.35\n");
+	ft_printf("  -0.5125   0.5213    |    0.4\n");
+	ft_printf("  -0.4      0.6       |   \n");
+	ft_printf("Press Esc to exit program\n");
 	exit(EXIT_FAILURE);
 }
 
