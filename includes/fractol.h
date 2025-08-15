@@ -29,6 +29,10 @@
 # define WHITE 0xffffff
 # define SCROLL_DOWN 5
 # define SCROLL_UP 4
+# define MV_LEFT -1
+# define MV_RIGHT 1
+# define MV_UP 1
+# define MV_DOWN -1
 
 /* A structure to represent complex numbers:
 - `r` for real part
@@ -101,6 +105,5 @@ t_complex	init_complex(double r, double i);
 t_axis		init_axis(double min, double max);
 double		ft_abs(double n);
 t_complex	quadratic_map(t_complex z, t_complex c);
-
 
 #endif
