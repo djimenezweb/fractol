@@ -15,7 +15,7 @@
 /* Called when the window close button is pressed */
 int	close_window(t_fractol *f)
 {
-	free_and_exit(f, 0);
+	free_and_exit(f, EXIT_SUCCESS);
 	return (0);
 }
 
