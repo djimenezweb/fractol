@@ -12,12 +12,14 @@
 
 #include "fractol.h"
 
+/* TO DO */
 void	bad_arguments(void)
 {
 	ft_printf("TO DO: Bad arguments\n");
 	exit(EXIT_FAILURE);
 }
 
+/* Sets fractal mode if a single character is passed, exits on error. */
 void	check_character(t_fractol *f, char c)
 {
 	if (c == 'M')
@@ -28,6 +30,18 @@ void	check_character(t_fractol *f, char c)
 		bad_arguments();
 }
 
+/* Sets fractal mode if a string is passed, exits on error. */
+void	check_string(t_fractol *f, char *str, int len)
+{
+	if (!ft_strncmp(str, "MANDELBROT", len))
+		f->mode = MANDELBROT;
+	else if (!ft_strncmp(str, "JULIA", len))
+		f->mode = JULIA;
+	else
+		bad_arguments();
+}
+
+/* Converts argument to uppercase and sets fractal mode. */
 void	set_mode(t_fractol *f, char *str)
 {
 	int	i;
@@ -41,16 +55,11 @@ void	set_mode(t_fractol *f, char *str)
 	if (i == 1)
 		check_character(f, str[0]);
 	else
-	{
-		if (!ft_strncmp(str, "MANDELBROT", i + 1))
-			f->mode = MANDELBROT;
-		else if (!ft_strncmp(str, "JULIA", i + 1))
-			f->mode = JULIA;
-		else
-			bad_arguments();
-	}
+		check_string(f, str, i + 1);
 }
 
+/* Validates argument count, sets fractal mode and
+converts Julia arguments to `double`. */
 void	parse_args(t_fractol *f, int argc, char *argv[])
 {
 	if (argc < 2 || argc > 4)

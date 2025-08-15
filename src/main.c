@@ -12,6 +12,10 @@
 
 #include "fractol.h"
 
+/* - Parses arguments
+- Initializes `t_fractol` structure with configuration
+- Renders fractal
+- Hooks into mouse and keyboard events */
 int	main(int argc, char *argv[])
 {
 	t_fractol	f;

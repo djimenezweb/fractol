@@ -12,6 +12,11 @@
 
 #include "fractol.h"
 
+/* - Initializes MLX instance
+- Creates new window
+- Creates new image
+- Sets starting `x` and `y` coordinate values
+- Exits program on error */
 void	initialize(t_fractol *f)
 {
 	f->mlx_ptr = mlx_init();

@@ -12,6 +12,8 @@
 
 #include "fractol.h"
 
+/* Initializes a `t_complex` structure
+with `r` (real) and `i` (imaginary) values. */
 t_complex	init_complex(double r, double i)
 {
 	t_complex	c;
@@ -21,6 +23,7 @@ t_complex	init_complex(double r, double i)
 	return (c);
 }
 
+/* Initializes a `t_axis` structure with `min` and `max` values */
 t_axis	init_axis(double min, double max)
 {
 	t_axis	a;

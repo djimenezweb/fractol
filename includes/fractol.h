@@ -90,7 +90,7 @@ void		parse_args(t_fractol *f, int argc, char *argv[]);
 
 int			fractal_iterations(t_complex z, t_complex c);
 int			cnt_iterations(t_fractol *f, t_complex pixel);
-void		image_pixel_put(t_fractol *f, int x, int y, int color);
+void		put_pixel_to_image(t_fractol *f, int x, int y, int color);
 void		render_fractal(t_fractol *f);
 
 /* utils.c */

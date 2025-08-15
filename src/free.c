@@ -12,12 +12,14 @@
 
 #include "fractol.h"
 
+/* Called when the window close button is pressed */
 int	close_window(t_fractol *f)
 {
 	free_and_exit(f, 0);
 	return (0);
 }
 
+/* Frees MLX allocated memory and exits program */
 void	free_and_exit(t_fractol *f, int status)
 {
 	if (!f)

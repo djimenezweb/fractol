@@ -12,6 +12,9 @@
 
 #include "fractol.h"
 
+/* Checks whether a complex number `c` belongs to the
+Mandelbrot or Julia set after a certain amount of iterations.
+Returns number of iterations (escape time) */
 int	fractal_iterations(t_complex z, t_complex c)
 {
 	int	i;
@@ -27,8 +30,9 @@ int	fractal_iterations(t_complex z, t_complex c)
 	return (i);
 }
 
-/* Checks whether a complex number `c` belongs to the
-Mandelbrot set after a certain amount of iterations */
+/* - Initialices `z` to (0, 0) for Mandelbrot only
+- Calls `fractal_iterations` according to the fractal mode
+- Returns number of iterations or `0` on error */
 int	cnt_iterations(t_fractol *f, t_complex pixel)
 {
 	t_complex	z;
@@ -43,7 +47,8 @@ int	cnt_iterations(t_fractol *f, t_complex pixel)
 	return (0);
 }
 
-void	image_pixel_put(t_fractol *f, int x, int y, int color)
+/* - Substitutes `mlx_pixel_put` to put the pixel into an image buffer */
+void	put_pixel_to_image(t_fractol *f, int x, int y, int color)
 {
 	char	*dst;
 
@@ -62,16 +67,25 @@ void	print_crosshair(t_fractol *f)
 	color = 0xffff00;
 	while (x < (WIDTH / 2) + 12)
 	{
-		image_pixel_put(f, x, (HEIGHT / 2), color);
+		put_pixel_to_image(f, x, (HEIGHT / 2), color);
 		x++;
 	}
 	while (y < (HEIGHT / 2) + 12)
 	{
-		image_pixel_put(f, (WIDTH / 2), y, color);
+		put_pixel_to_image(f, (WIDTH / 2), y, color);
 		y++;
 	}
 }
 
+/* "Escape time" algorithm: A repeating calculation is performed for
+each `x`, `y` point in the plot area and based on the behavior of 
+that calculation, a color is chosen for that pixel.
+- Calculates scale for current render
+- Clears window to start from scratch
+- Iterates through every pixel
+- Calculates pixel to equilavent fractal set 
+- Set the pixel color and puts it into image buffer
+- Puts image buffer into window */
 void	render_fractal(t_fractol *f)
 {
 	int			x;
@@ -91,7 +105,7 @@ void	render_fractal(t_fractol *f)
 			pixel.r = f->x.min + (double)x * scale;
 			pixel.i = f->y.max - (double)y * scale;
 			color = set_color(cnt_iterations(f, pixel));
-			image_pixel_put(f, x, y, (int)color);
+			put_pixel_to_image(f, x, y, (int)color);
 			y++;
 		}
 		x++;

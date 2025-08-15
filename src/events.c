@@ -77,6 +77,10 @@ int	handle_mouse(int e, int x, int y, t_fractol *f)
 	return (0);
 }
 
+/* Hooks into:
+- Close button event (`x_event = 17`)
+- Keyboard events
+- Mouse events */
 void	listen_events(t_fractol *f)
 {
 	mlx_hook(f->win_ptr, 17, 0, close_window, &f->mlx_ptr);
