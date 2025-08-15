@@ -27,6 +27,8 @@
 # define BACKGROUND	0x000054
 # define BLACK 0x000000
 # define WHITE 0xffffff
+# define SCROLL_DOWN 5
+# define SCROLL_UP 4
 
 /* A structure to represent complex numbers:
 - `r` for real part
