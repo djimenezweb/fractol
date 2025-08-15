@@ -21,7 +21,7 @@ void	reframe(t_fractol *f, int x, int y)
 	double	scale;
 
 	scale = (ft_abs(f->x.max) + ft_abs(f->x.min)) / WIDTH;
-	ft_printf("Mouse: (%d,%d) -> (%d,%d)\n", x, y, x - (WIDTH / 2), y - (HEIGHT / 2));
+	//ft_printf("Mouse: (%d,%d) -> (%d,%d)\n", x, y, x - (WIDTH / 2), y - (HEIGHT / 2));
 	f->x.max = f->x.max + ((double)x - (WIDTH / 2)) * scale;
 	f->x.min = f->x.min + ((double)x - (WIDTH / 2)) * scale;
 	f->y.max = f->y.max + ((double)y - (HEIGHT / 2)) * scale;
