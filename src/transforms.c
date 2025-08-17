@@ -18,7 +18,7 @@ double	find_center(t_axis a)
 	return ((a.max + a.min) / 2.0);
 }
 
-/* - Finds center and update scaled boundaries so that center stays fixed */
+/* Finds center and updates scaled boundaries so that center stays fixed */
 void	scale(t_fractol *f, double magnification)
 {
 	double	cx;

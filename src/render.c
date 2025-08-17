@@ -12,6 +12,28 @@
 
 #include "fractol.h"
 
+/* - Maps iteration count `i` into an RGB color.
+- Computes factor with gamma 0.7 to create a nonlinear curve. */
+int	set_color(int i)
+{
+	double	factor;
+	int		r;
+	int		g;
+	int		b;
+
+	if (i == 0)
+		return (BACKGROUND);
+	else if (i < ITERATIONS)
+	{
+		factor = pow((double)i / ITERATIONS, 0.7);
+		r = (255 * factor);
+		g = (255 * factor);
+		b = BACKGROUND + ((255 - BACKGROUND) * factor);
+		return ((r << 16) | (g << 8) | b);
+	}
+	return (BLACK);
+}
+
 /* Checks whether a complex number `c` belongs to the
 Mandelbrot or Julia set after a certain amount of iterations.
 Returns number of iterations (escape time) */
@@ -56,27 +78,6 @@ void	put_pixel_to_image(t_fractol *f, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	print_crosshair(t_fractol *f)
-{
-	int	x;
-	int	y;
-	int	color;
-
-	x = (WIDTH / 2) - 12;
-	y = (HEIGHT / 2) - 12;
-	color = 0xffff00;
-	while (x < (WIDTH / 2) + 12)
-	{
-		put_pixel_to_image(f, x, (HEIGHT / 2), color);
-		x++;
-	}
-	while (y < (HEIGHT / 2) + 12)
-	{
-		put_pixel_to_image(f, (WIDTH / 2), y, color);
-		y++;
-	}
-}
-
 /* "Escape time" algorithm: A repeating calculation is performed for
 each `x`, `y` point in the plot area and based on the behavior of 
 that calculation, a color is chosen for that pixel.
@@ -110,6 +111,5 @@ void	render_fractal(t_fractol *f)
 		}
 		x++;
 	}
-	print_crosshair(f);
 	mlx_put_image_to_window(f->mlx_ptr, f->win_ptr, f->img, 0, 0);
 }

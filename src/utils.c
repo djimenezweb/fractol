@@ -33,14 +33,6 @@ t_axis	init_axis(double min, double max)
 	return (a);
 }
 
-/* Returns the absolute value of a double floating number `n` */
-double	ft_abs(double n)
-{
-	if (n < 0)
-		return (-n);
-	return (n);
-}
-
 /* Solves `f(z) = z² + c` and returns the result as a complex number */
 t_complex	quadratic_map(t_complex z, t_complex c)
 {

@@ -3,7 +3,6 @@ CC			= cc
 CFLAGS		= -Wall -Werror -Wextra
 SRC_PATH	= src/
 SRC			=	main.c \
-				color.c \
 				events.c \
 				free.c \
 				initialization.c \

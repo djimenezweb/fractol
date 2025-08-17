@@ -21,10 +21,6 @@
 # include <math.h>
 # include <X11/keysym.h>
 
-/* color.c */
-
-uint32_t	set_color(int i);
-
 /* events.c */
 
 int			handle_key(int keysym, t_fractol *f);
@@ -43,11 +39,14 @@ void		initialize(t_fractol *f);
 /* parse-args.c */
 
 void		bad_arguments(void);
+void		parse_character(t_fractol *f, char c);
+void		parse_string(t_fractol *f, char *str, int len);
 void		set_mode(t_fractol *f, char *str);
 void		parse_args(t_fractol *f, int argc, char *argv[]);
 
 /* render.c */
 
+int			set_color(int i);
 int			fractal_iterations(t_complex z, t_complex c);
 int			cnt_iterations(t_fractol *f, t_complex pixel);
 void		put_pixel_to_image(t_fractol *f, int x, int y, int color);
@@ -63,7 +62,6 @@ void		move(t_axis *axis, int direction);
 
 t_complex	init_complex(double r, double i);
 t_axis		init_axis(double min, double max);
-double		ft_abs(double n);
 t_complex	quadratic_map(t_complex z, t_complex c);
 
 #endif
