@@ -9,6 +9,7 @@ SRC			=	main.c \
 				initialization.c \
 				parse-args.c \
 				render.c \
+				transforms.c \
 				utils.c
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))
 OBJS		= $(SRCS:.c=.o)
