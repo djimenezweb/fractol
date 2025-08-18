@@ -84,6 +84,11 @@ void	parse_args(t_fractol *f, int argc, char *argv[])
 	}
 	else if (f->mode == JULIA)
 	{
+		if (argv[2] && argv[3])
+		{
+			if (!ft_isdigit(argv[2][0]) || !ft_isdigit(argv[3][0]))
+				bad_arguments();
+		}
 		if (!argv[2])
 			f->c = init_complex(-0.5125, 0.5213);
 		else if (argv[2] && !argv[3])
