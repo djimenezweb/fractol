@@ -69,7 +69,7 @@ int	cnt_iterations(t_fractol *f, t_complex pixel)
 	return (0);
 }
 
-/* - Substitutes `mlx_pixel_put` to put the pixel into an image buffer */
+/* Puts pixel into image buffer (substitutes `mlx_pixel_put`) */
 void	put_pixel_to_image(t_fractol *f, int x, int y, int color)
 {
 	char	*dst;

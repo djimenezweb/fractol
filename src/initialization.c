@@ -29,14 +29,9 @@ void	initialize(t_fractol *f)
 	if (!f->img)
 		free_and_exit(f, EXIT_FAILURE);
 	f->addr = mlx_get_data_addr(f->img, &f->bpp, &f->line_length, &f->endian);
+	f->y = init_axis(-1.6, 1.6);
 	if (f->mode == MANDELBROT)
-	{
 		f->x = init_axis(-2.2, 1.0);
-		f->y = init_axis(-1.6, 1.6);
-	}
 	else
-	{
 		f->x = init_axis(-1.6, 1.6);
-		f->y = init_axis(-1.6, 1.6);
-	}
 }
